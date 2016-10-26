@@ -42,27 +42,16 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 	}
 
 	// if floodmap is not accurate, then re-create it
-	if (!getFloodMap(x1, y1)) {
+	if (!getFloodMap(x1, y1) || (floodSize != size)) {
+		floodSize = size;
 		// zero floodmap, and set current point as reachable
-		std::cout << "zeroing" << std::endl;
 		std::fill(floodMap, floodMap+size, false);
-		std::cout << "Flooding from: " << x1 << ", " << y1 << std::endl;
-		std::cout << "Can i move west?: " << (canMove(size, x1, y1, W)) << std::endl;
-		std::cout << "Have i flooded there?: " << (!getFloodMap(x1, y1-1)) << std::endl;
 		flood(size, x1, y1);
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++){
-				if (getFloodMap(j, i)) {
-					std::cout << j << ", " << i << " | ";
-				}
-			}
-			std::cout << std::endl;
-		}
 	}
 	// check cache. Assumes that only units of same
 	// size are at play. otherwise need different caches
 	// for each different size or something
-	if (getFloodMap(x1, y1) || getFloodMap(x2, y2)) {
+	if (getFloodMap(x2, y2)) {
 		std::cout<< "spot is in cache" << std::endl;
 		return true;
 	}
