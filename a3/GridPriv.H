@@ -73,7 +73,7 @@ bool getFloodMap(int x, int y) const {
 	return floodMap[x + y*width];
 }
 
-void setReachable(int x, int y) {
+void setReachable(int x, int y) const {
 	floodMap[x + y*width] = true;
 }
 
@@ -81,7 +81,7 @@ void setReachable(int x, int y) {
 // as moveable.
 // Checks if node has already been expanded before expanding
 // To stop infinite flooding
-void flood(int size, int x, int y) {
+void flood(int size, int x, int y) const {
 	setReachable(x, y);
 	if(canMove(size, x, y, N) && !getFloodMap(x, y-1))
 		flood(size, x, y-1);
