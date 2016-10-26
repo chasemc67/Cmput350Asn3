@@ -46,7 +46,7 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 		// zero floodmap, and set current point as reachable
 		std::cout << "zeroing" << std::endl;
 		std::fill(floodMap, floodMap+size, false);
-		std::cout << "Grass equals blocked" << getTile(13,1) == getTile(1,1) << std::endl;
+		std::cout << "Grass equals blocked" << (getTile(13,1) == getTile(1,1)) << std::endl;
 		flood(size, x1, y1);
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++){
