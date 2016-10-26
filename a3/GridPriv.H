@@ -63,7 +63,7 @@ bool canMove(int size, int x1, int y1, Direction dir) const {
 // Check if the tiles are all the same at 
 // points covered by unit at x1,y1 and x2,y2
 bool tilesAreSame(int size, int x1, int y1, int x2, int y2) const {
-	return canFit(x1, y1) && canFit(x2, y2) && getTile(x1, y1) == getTile(x2, y2);
+	return (canFit(x1, y1) && canFit(x2, y2) && getTile(x1, y1) == getTile(x2, y2));
 }
 
 // Check flood cache with bounds checking
