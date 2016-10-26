@@ -1,4 +1,6 @@
+#ifndef <iostream>
 #include <iostream>
+#endif
 
 int width;
 int height;
