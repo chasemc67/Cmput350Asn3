@@ -172,7 +172,7 @@ void OnDisplay()
 
   for (int y(0); y < mymap->getHeight(); ++y) {
     for (int x(0); x < mymap->getWidth(); ++x) {
-    	if (x == 13 && y == 1)
+    	if (x == 9 && y == 1)
       		DrawPixel(x, y, 0, colors[3]);
       	else
       		DrawPixel(x, y, 0, colors[mymap->getTile(x, y)]);
