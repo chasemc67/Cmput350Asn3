@@ -105,7 +105,7 @@ void OnMotion(int x, int y)
   mouseX1 = MouseToCoordX(x);
   mouseY1 = MouseToCoordY(y);
 
-  cout << "Mouse at: " << x << ", " << y << endl;
+  // cout << "Mouse at: " << x << ", " << y << endl;
 
   glutPostRedisplay();
 }
@@ -239,11 +239,11 @@ void LoadMap(const char * filename)
 
   cout << "width=" << width << " height=" << height << endl;
 
-  // grass: 266, 448 | 575, 445
+  // grass: 266, 448 | 575, 445 | 295, 437
   // water: 418, 577
 
   cout << "Testing connectivity:" << endl;
-  cout << "Should be true: " << mymap->isConnected(0, 266, 448, 575, 445) << endl;
+  cout << "Should be true: " << mymap->isConnected(0, 295, 437, 295, 438) << endl;
   cout << "Should be true: " << mymap->isConnected(0, 266, 448, 266, 449) << endl;
   cout << "Should be false: " << mymap->isConnected(1, 266, 448, 575, 445) << endl;
   cout << "Should be false: " << mymap->isConnected(2, 266, 448, 575, 445) << endl;
