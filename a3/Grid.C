@@ -30,12 +30,15 @@ Grid::Tile Grid::getTile(int x, int y) const {
 
 bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 	// check if object with size can reside on x1, y1
-
+	if (!canFit(size, x1, y1))
+		return false;
 	// Check if object can move in direction
+
 
 	// For each direction object can move, recursively call isConnected.
 	// Base case is if object can move from x1, y1 to x2, y2 in 1 move
 
+	// Cache result in some data member
 	// Return the OR of all the results
 
 	return true;
