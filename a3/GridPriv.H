@@ -28,16 +28,16 @@ bool canFit(int size, int x1, int y1) const {
 bool canMove(int size, int x1, int y1, Direction dir) const {
 	switch(dir) {
 		case N:
-			return canFit(size, x1, y1-1) && tilesAreSame(size, x1, y1, x1, y1-1);
+			return (canFit(size, x1, y1-1) && tilesAreSame(size, x1, y1, x1, y1-1));
 			break;
 		case S:
-			return canFit(size, x1, y1+1) && tilesAreSame(size, x1, y1, x1, y1+1);;
+			return (canFit(size, x1, y1+1) && tilesAreSame(size, x1, y1, x1, y1+1));
 			break;
 		case E:
-			return canFit(size, x1+1, y1) && tilesAreSame(size, x1, y1, x1+1, y1);;
+			return (canFit(size, x1+1, y1) && tilesAreSame(size, x1, y1, x1+1, y1));
 			break;
 		case W:
-			return canFit(size, x1-1, y1) && tilesAreSame(size, x1, y1, x1-1, y1);;
+			return (canFit(size, x1-1, y1) && tilesAreSame(size, x1, y1, x1-1, y1));
 			break;
 		case NE:
 			return (canMove(size, x1, y1, N) && canMove(size, x1, y1, E));

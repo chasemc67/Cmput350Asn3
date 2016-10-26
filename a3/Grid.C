@@ -45,15 +45,6 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 	if (!getFloodMap(x1, y1)) {
 		// zero floodmap, and set current point as reachable
 		std::cout << "zeroing" << std::endl;
-		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++){
-				if (getFloodMap(j, i)) {
-					std::cout << j << ", " << i << " | ";
-				}
-			}
-			std::cout << std::endl;
-		}
-		std::cout << "filling" << std::endl;
 		std::fill(floodMap, floodMap+size, false);
 		flood(size, x1, y1);
 		for (int i = 0; i < height; i++) {
