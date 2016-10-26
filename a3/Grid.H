@@ -123,8 +123,6 @@ public:
   // sets tile type at location x y
   void setTile(int x, int y, Tile tile);
 
-  void flood(int size, int x, int y) const;
-
 private:
 
   // add private members in file below

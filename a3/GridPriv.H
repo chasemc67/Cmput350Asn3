@@ -81,7 +81,6 @@ void setReachable(int x, int y) const {
 // as moveable.
 // Checks if node has already been expanded before expanding
 // To stop infinite flooding
-/*
 void flood(int size, int x, int y) const {
 	std::cout << "Flooding " << x << ", " << y << std::endl; 
 	setReachable(x, y);
@@ -102,4 +101,4 @@ void flood(int size, int x, int y) const {
 		flood(size, x-1, y+1);
 	if(canMove(size, x, y, SE) && !getFloodMap(x+1, y+1))
 		flood(size, x+1, y+1);
-};*/
+};
