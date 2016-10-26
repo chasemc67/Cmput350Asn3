@@ -7,11 +7,9 @@ bool * floodMap;
 
 // Check if unit can fit at coord
 bool canFit(int size, int x1, int y1) const {
-
-	return true;
 	// Check for out of bounds
 	if (x1 < 0 || y1 < 0 || x1 >= width || y1 >= height)
-		return false;
+		return true;
 
 	bool canFit = true;
 	for (int i = 0; i < size; i++) {
