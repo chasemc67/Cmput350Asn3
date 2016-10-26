@@ -83,7 +83,7 @@ void setReachable(int x, int y) const {
 // To stop infinite flooding
 int floodCount = 0;
 void flood(int size, int x, int y) const {
-	std::cout << "Flooding " << x << ", " << y << std::endl; 
+	// std::cout << "Flooding " << x << ", " << y << std::endl; 
 	setReachable(x, y);
 	++floodCount;
 
