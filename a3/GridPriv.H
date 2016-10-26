@@ -40,16 +40,16 @@ bool canMove(int size, int x1, int y1, Direction dir) const {
 			return (canFit(size, x1-1, y1) && tilesAreSame(size, x1, y1, x1-1, y1));
 			break;
 		case NE:
-			return (canMove(size, x1, y1, N) && canMove(size, x1, y1, E));
+			return (canMove(size, x1, y1, N) && canMove(size, x1, y1, E) && tilesAreSame(size, x1, y1, x1+1, y1-1));
 			break;
 		case NW:
-			return (canMove(size, x1, y1, N) && canMove(size, x1, y1, W));
+			return (canMove(size, x1, y1, N) && canMove(size, x1, y1, W) && tilesAreSame(size, x1, y1, x1-1, y1-1));
 			break;
 		case SE:
-			return (canMove(size, x1, y1, S) && canMove(size, x1, y1, E));
+			return (canMove(size, x1, y1, S) && canMove(size, x1, y1, E) && tilesAreSame(size, x1, y1, x1+1, y1+1));
 			break;
 		case SW:
-			return (canMove(size, x1, y1, S) && canMove(size, x1, y1, W));
+			return (canMove(size, x1, y1, S) && canMove(size, x1, y1, W) && tilesAreSame(size, x1, y1, x1-1, y1+1));
 			break;
 		default:
 			return false;
@@ -88,7 +88,7 @@ void flood(int size, int x, int y) const {
 	if(canMove(size, x, y, E) && !getFloodMap(x+1, y))
 		flood(size, x+1, y);
 	if(canMove(size, x, y, W) && !getFloodMap(x-1, y))
-		flood(size, x-1, y); /*
+		flood(size, x-1, y);
 	if(canMove(size, x, y, NE) && !getFloodMap(x+1, y-1))
 		flood(size, x+1, y-1);
 	if(canMove(size, x, y, NW) && !getFloodMap(x-1, y-1))
@@ -97,5 +97,4 @@ void flood(int size, int x, int y) const {
 		flood(size, x-1, y+1);
 	if(canMove(size, x, y, SE) && !getFloodMap(x+1, y+1))
 		flood(size, x+1, y+1);
-	*/
 };
