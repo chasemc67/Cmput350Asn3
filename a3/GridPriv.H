@@ -3,7 +3,7 @@ int height;
 int * map;
 
 // used to cache floodfill for connected part
-int * floodMap;
+bool * floodMap;
 
 // Check if unit can fit at coord
 bool canFit(int size, int x1, int y1) const {
