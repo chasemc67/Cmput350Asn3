@@ -47,6 +47,14 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 		std::cout << "zeroing" << std::endl;
 		std::fill(floodMap, floodMap+size, false);
 		flood(size, x1, y1);
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++){
+				if (getFloodMap(j, i)) {
+					std::cout << j << ", " << i << " | "
+				}
+			}
+			std::cout << std::endl;
+		}
 	}
 	// check cache. Assumes that only units of same
 	// size are at play. otherwise need different caches
