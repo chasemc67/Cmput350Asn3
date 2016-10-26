@@ -155,7 +155,7 @@ void OnDisplay()
   }
   
   static const float colors[][3] = { 
-    { 0, 0.5f, 0 }, { 0, 0, 0.5f }, { 0.25f, 0.25f, 0.25f }
+    { 0, 0.5f, 0 }, { 0, 0, 0.5f }, { 0.25f, 0.25f, 0.25f }, { 0.5f, 0, 0 }
   };
   static const float white [3] = { 1, 1, 1 };
   static const float yellow[3] = { 1, 1, 0 };
@@ -172,7 +172,10 @@ void OnDisplay()
 
   for (int y(0); y < mymap->getHeight(); ++y) {
     for (int x(0); x < mymap->getWidth(); ++x) {
-      DrawPixel(x, y, 0, colors[mymap->getTile(x, y)]);
+    	if (x == 1 && y == 1)
+      		DrawPixel(x, y, 0, colors[3]);
+      	else
+      		DrawPixel(x, y, 0, colors[mymap->getTile(x, y)]);
     }
   }
   
