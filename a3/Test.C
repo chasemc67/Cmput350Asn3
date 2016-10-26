@@ -57,8 +57,8 @@ int main(int argc, char *argv[])
   cout << "Should be true: " << mymap->isConnected(0, 9, 1, 13, 2) << endl;
   cout << "Should be true: " << mymap->isConnected(0, 13, 1, 13, 2) << endl;
   cout << "Should be false: " << mymap->isConnected(0, 13, 1, 0, 0) << endl;
-  cout << "Should be true: " << mymap->isConnected(0, 23, 84, 83, 83) << endl;
-  cout << "Should be false: " << mymap->isConnected(2, 23, 84, 83, 83) << endl;
+  cout << "Should be true: " << mymap->isConnected(0, 23, 52, 51, 51) << endl;
+  cout << "Should be false: " << mymap->isConnected(2, 23, 52, 51, 51) << endl;
     
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
@@ -173,7 +173,7 @@ void OnDisplay()
 
   for (int y(0); y < mymap->getHeight(); ++y) {
     for (int x(0); x < mymap->getWidth(); ++x) {
-    	if (x == 23 && y == 84)
+    	if (x == 23 && y == 52)
       		DrawPixel(x, y, 0, colors[3]);
       	else
       		DrawPixel(x, y, 0, colors[mymap->getTile(x, y)]);
