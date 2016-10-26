@@ -28,3 +28,16 @@ int Grid::getHeight() const {
 Grid::Tile Grid::getTile(int x, int y) const {
 	return static_cast<Tile>(map[x + y*width]);
 }
+
+bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
+	return true;
+}
+
+int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2, 
+                       std::vector<Direction> &path) const {
+	return 1;
+}
+
+void Grid::setTile(int x, int y, Tile tile) {
+	return;
+}
