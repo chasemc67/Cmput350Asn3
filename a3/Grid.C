@@ -7,18 +7,6 @@ Grid::Grid(int width, int height) {
 	this->width = width;
 	this->height = height;
 	map = new int[width*height];
-
-	for (int i = 0; i < height*width; i++) {
-		map[i] = GROUND;
-	}
-
-	for (int i = 0; i < width*2; i++) {
-		map[i] = WATER;
-	}
-
-	for (int i = width*2; i < width*4; i++) {
-		map[i] = BLOCKED;
-	}
 }
 	
 
@@ -50,5 +38,5 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 }
 
 void Grid::setTile(int x, int y, Tile tile) {
-	return;
+	map[x + y*width] = tile;
 }
