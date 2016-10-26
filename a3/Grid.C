@@ -8,6 +8,9 @@ Grid::Grid(int width, int height) {
 	height = height;
 	map = new int[width*height];
 
+	for (int i = 0; i < height*width; i++) {
+		map[i] = GROUND;
+	}
 }
 	
 
