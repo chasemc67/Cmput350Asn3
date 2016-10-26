@@ -18,4 +18,4 @@ bool canFit(int size, int x1, int y1) const {
 	if (!canFit) 
 		return false;
 	return true;
-}
+};
