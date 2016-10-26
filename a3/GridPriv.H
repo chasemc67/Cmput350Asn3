@@ -6,6 +6,7 @@ int * map;
 bool * floodMap;
 
 // Check if unit can fit at coord
+/*
 bool canFit(int size, int x1, int y1) const {
 	// Check for out of bounds
 	if (x1 < 0 || y1 < 0 || x1 >= this->width || y1 >= this->height)
@@ -20,7 +21,7 @@ bool canFit(int size, int x1, int y1) const {
 		}
 	}
 	return canFit;
-};
+}; */
 
 // Check if unit can move 1 square in direction
 // If moving diagonally we can recursively check the 2 non-diag dirs
