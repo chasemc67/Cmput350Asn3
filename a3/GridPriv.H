@@ -82,14 +82,15 @@ void setReachable(int x, int y) const {
 void flood(int size, int x, int y) const {
 	setReachable(x, y);
 
+	/*
 	if(canMove(size, x, y, N) && !getFloodMap(x, y-1))
 		flood(size, x, y-1);
 	if(canMove(size, x, y, S) && !getFloodMap(x, y+1))
-		flood(size, x, y+1);
+		flood(size, x, y+1); */
 	if(canMove(size, x, y, E) && !getFloodMap(x+1, y))
 		flood(size, x+1, y);
 	if(canMove(size, x, y, W) && !getFloodMap(x-1, y))
-		flood(size, x-1, y);
+		flood(size, x-1, y); /*
 	if(canMove(size, x, y, NE) && !getFloodMap(x+1, y-1))
 		flood(size, x+1, y-1);
 	if(canMove(size, x, y, NW) && !getFloodMap(x-1, y-1))
@@ -98,4 +99,5 @@ void flood(int size, int x, int y) const {
 		flood(size, x-1, y+1);
 	if(canMove(size, x, y, SE) && !getFloodMap(x+1, y+1))
 		flood(size, x+1, y+1);
+	*/
 };
