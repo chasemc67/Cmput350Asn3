@@ -66,18 +66,18 @@ bool canMove(int size, int x1, int y1, Direction dir) const {
 // points covered by unit at x1,y1 and x2,y2
 bool tilesAreSame(int size, int x1, int y1, int x2, int y2) const {
 	return (canFit(size, x1, y1) && canFit(size, x2, y2) && getTile(x1, y1) == getTile(x2, y2));
-}
+};
 
 // Check flood cache with bounds checking
 bool getFloodMap(int x, int y) const {
 	if (x < 0 || y < 0 || x >= width || y >= height)
 		return false;
 	return floodMap[x + y*width];
-}
+};
 
 void setReachable(int x, int y) const {
 	floodMap[x + y*width] = true;
-}
+};
 
 // Recursively set all adjacent points that can be moved to
 // as moveable.
@@ -103,4 +103,4 @@ void flood(int size, int x, int y) const {
 		flood(size, x-1, y+1);
 	if(canMove(size, x, y, SE) && !getFloodMap(x+1, y+1))
 		flood(size, x+1, y+1);
-}
+};
