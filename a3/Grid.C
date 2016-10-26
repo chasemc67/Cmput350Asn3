@@ -42,8 +42,7 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 	}
 
 	// if floodmap is not accurate, then re-create it
-	if (!getFloodMap(x1, y1) || (floodSize != size)) {
-		floodSize = size;
+	if (!getFloodMap(x1, y1)) {
 		// zero floodmap, and set current point as reachable
 		std::fill(floodMap, floodMap+size, false);
 		flood(size, x1, y1);
