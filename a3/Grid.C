@@ -5,7 +5,7 @@ Grid::Grid(int width, int height) {
 	// each entry will be an int representing a tile in 
 	// the tile type enum
 	width = width;
-	height = height;
+	this->height = height;
 	map = new int[width*height];
 
 	for (int i = 0; i < height*width; i++) {
@@ -21,7 +21,7 @@ Grid::~Grid(){
 }
 
 int Grid::getWidth() const {
-	return width;
+	return this->width;
 }
 
 int Grid::getHeight() const {
