@@ -1,4 +1,4 @@
-#include <iostream>
+// #include <iostream>
 
 int width;
 int height;
@@ -10,7 +10,7 @@ bool canFit(int size, int x1, int y1) const {
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
 			if (getTile(x1+i, y1+i) != getTile(x1, y1) || getTile(x1+i, y1+i) == BLOCKED){
-				std::cout << "Can't fit" << std::endl;
+				// std::cout << "Can't fit" << std::endl;
 				canFit = false;
 			}
 		}
