@@ -1,0 +1,3 @@
+refresh flood when size changes
+fix flooding diagonally (cause that should work)
+figure out why it thinks i can go to 0,0 in test set
