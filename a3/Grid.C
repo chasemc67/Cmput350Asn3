@@ -6,7 +6,7 @@ Grid::Grid(int width, int height) {
 	// the tile type enum
 	width = width;
 	height = height;
-	map = Tile[width*height];
+	map = int[width*height];
 
 }
 	
@@ -25,5 +25,5 @@ int Grid::getHeight() {
 }
 
 Tile Grid::getTile(int x, int y) const {
-	return map[x + y*width];
+	return static_cast<Tile>(map[x + y*width]);
 }
