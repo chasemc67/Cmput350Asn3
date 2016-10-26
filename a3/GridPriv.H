@@ -1,6 +1,4 @@
-// list private Grid members here
-
-// ...
+#include <iostream>
 
 int width;
 int height;
