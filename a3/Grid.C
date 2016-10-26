@@ -67,20 +67,3 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 void Grid::setTile(int x, int y, Tile tile) {
 	map[x + y*width] = tile;
 }
-
-bool Grid::canFit(int size, int x1, int y1) const {
-	// Check for out of bounds
-	std::cout << "Width: " << width << std::endl;
-	if (x1 < 0 || y1 < 0 || x1 >= this->width || y1 >= this->height)
-		return false;
-
-	bool canFit = true;
-	for (int i = 0; i < size; i++) {
-		for (int j = 0; j < size; j++) {
-			if (getTile(x1+i, y1+i) != getTile(x1, y1) || getTile(x1+i, y1+i) == BLOCKED){
-				canFit = false;
-			}
-		}
-	}
-	return canFit;
-};

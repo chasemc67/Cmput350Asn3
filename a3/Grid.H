@@ -123,8 +123,6 @@ public:
   // sets tile type at location x y
   void setTile(int x, int y, Tile tile);
 
-  bool canFit(int size, int x1, int y1) const;
-
 private:
 
   // add private members in file below

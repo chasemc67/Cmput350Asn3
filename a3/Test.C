@@ -243,11 +243,10 @@ void LoadMap(const char * filename)
   // water: 418, 577
 
   cout << "Testing connectivity:" << endl;
-  cout << "Should be true: " << mymap->isConnected(0, 295, 437, 295, 438) << endl;
-  cout << "Should be true: " << mymap->isConnected(0, 266, 448, 266, 449) << endl;
-  cout << "Should be false: " << mymap->isConnected(1, 266, 448, 575, 445) << endl;
-  cout << "Should be false: " << mymap->isConnected(2, 266, 448, 575, 445) << endl;
-  cout << "Should be false: " << mymap->isConnected(2, 266, 448, 418, 577) << endl;
+  cout << "Should be true: " << mymap->isConnected(0, 13, 1, 13, 2) << endl;
+  cout << "Should be false: " << mymap->isConnected(0, 13, 1, 0, 0) << endl;
+  cout << "Should be true: " << mymap->isConnected(0, 23, 84, 83, 83) << endl;
+  cout << "Should be false: " << mymap->isConnected(2, 23, 84, 83, 83) << endl;
     
   // Initialise the map
   in.seekg(54);
