@@ -98,7 +98,7 @@ public:
   // Map properties
   int getWidth() const;
   int getHeight() const;
-  Tile getTile(int x, int y) const;
+  Grid::Tile getTile(int x, int y) const;
     
   // Pathfinding operations
 
