@@ -19,9 +19,7 @@ bool canFit(int size, int x1, int y1) const {
 			}
 		}
 	}
-	if (!canFit) 
-		return false;
-	return true;
+	return canFit;
 };
 
 // Check if unit can move 1 square in direction
