@@ -1,5 +1,5 @@
 #include "Grid.H"
-// #include <iostream>
+#include <iostream>
 	
 Grid::Grid(int width, int height) {
 	// Create width/height grid in memory
@@ -51,6 +51,28 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 		return true;
 	return false;
 }
+
+void Grid::flood(int size, int x, int y) const {
+	std::cout << "Flooding " << x << ", " << y << std::endl; 
+	setReachable(x, y);
+
+	if(canMove(size, x, y, N) && !getFloodMap(x, y-1))
+		flood(size, x, y-1);
+	if(canMove(size, x, y, S) && !getFloodMap(x, y+1))
+		flood(size, x, y+1);
+	if(canMove(size, x, y, E) && !getFloodMap(x+1, y))
+		flood(size, x+1, y);
+	if(canMove(size, x, y, W) && !getFloodMap(x-1, y))
+		flood(size, x-1, y);
+	if(canMove(size, x, y, NE) && !getFloodMap(x+1, y-1))
+		flood(size, x+1, y-1);
+	if(canMove(size, x, y, NW) && !getFloodMap(x-1, y-1))
+		flood(size, x-1, y-1);
+	if(canMove(size, x, y, SW) && !getFloodMap(x-1, y+1))
+		flood(size, x-1, y+1);
+	if(canMove(size, x, y, SE) && !getFloodMap(x+1, y+1))
+		flood(size, x+1, y+1);
+};
 
 int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2, 
                        std::vector<Direction> &path) const {
