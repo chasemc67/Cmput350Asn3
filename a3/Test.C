@@ -238,15 +238,6 @@ void LoadMap(const char * filename)
   mymap = GridPtr(new Grid(width, height));
 
   cout << "width=" << width << " height=" << height << endl;
-
-  // grass: 266, 448 | 575, 445 | 295, 437
-  // water: 418, 577
-
-  cout << "Testing connectivity:" << endl;
-  cout << "Should be true: " << mymap->isConnected(0, 13, 1, 13, 2) << endl;
-  cout << "Should be false: " << mymap->isConnected(0, 13, 1, 0, 0) << endl;
-  cout << "Should be true: " << mymap->isConnected(0, 23, 84, 83, 83) << endl;
-  cout << "Should be false: " << mymap->isConnected(2, 23, 84, 83, 83) << endl;
     
   // Initialise the map
   in.seekg(54);
@@ -271,4 +262,10 @@ void LoadMap(const char * filename)
       mymap->setTile(x, height-y-1, tile);
     }
   }
+
+  cout << "Testing connectivity:" << endl;
+  cout << "Should be true: " << mymap->isConnected(0, 13, 1, 13, 2) << endl;
+  cout << "Should be false: " << mymap->isConnected(0, 13, 1, 0, 0) << endl;
+  cout << "Should be true: " << mymap->isConnected(0, 23, 84, 83, 83) << endl;
+  cout << "Should be false: " << mymap->isConnected(2, 23, 84, 83, 83) << endl;
 }
