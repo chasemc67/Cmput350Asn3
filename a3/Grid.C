@@ -7,13 +7,17 @@ Grid::Grid(int width, int height) {
 	// the tile type enum
 	this->width = width;
 	this->height = height;
-	map = new int[width*height];
+	int size = width*height;
+	map = new int[size];
+	floodMap = new bool[size];
+	memset(floodMap, 0, size*sizeof(*floodMap));
 }
 	
 
 Grid::~Grid(){
 	// destroy the created 2 dimensional array, as well as
 	// any data members on the heap
+	delete [] floodMap;
 	delete [] map;
 }
 
@@ -33,16 +37,19 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 	// check if object with size can reside on x1, y1
 	if (!canFit(size, x1, y1))
 		return false;
-	// Check if object can move in direction
-	
 
-	// For each direction object can move, recursively call isConnected.
-	// Base case is if object can move from x1, y1 to x2, y2 in 1 move
-
-	// Cache result in some data member
-	// Return the OR of all the results
-
-	return true;
+	// if floodmap is not accurate, then re-create it
+	if (!getFloodMap(x1, y1)) {
+		// zero floodmap, and set current point as reachable
+		memset(floodMap, 0, size*sizeof(*floodMap));
+		flood(size, x1, y1);
+	}
+	// check cache. Assumes that only units of same
+	// size are at play. otherwise need different caches
+	// for each different size or something
+	if (getFloodMap(x1, y1) || getFloodMap(x2, y2)) 
+		return true;
+	return false;
 }
 
 int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2, 
