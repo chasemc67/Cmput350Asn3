@@ -17,11 +17,11 @@ Grid::~Grid(){
 	delete [] map;
 }
 
-int Grid::getWidth() {
+int Grid::getWidth() const {
 	return width;
 }
 
-int Grid::getHeight() {
+int Grid::getHeight() const {
 	return height;
 }
 
