@@ -25,6 +25,6 @@ int Grid::getHeight() const {
 	return height;
 }
 
-Tile Grid::getTile(int x, int y) const {
+Grid::Tile Grid::getTile(int x, int y) const {
 	return static_cast<Tile>(map[x + y*width]);
 }
