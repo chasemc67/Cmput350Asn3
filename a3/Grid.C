@@ -47,6 +47,8 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 		std::cout << "zeroing" << std::endl;
 		std::fill(floodMap, floodMap+size, false);
 		std::cout << "Flooding from: " << x1 << ", " << y1 << std::endl;
+		std::cout << "Can i move west?: " << ((canMove(size, x, y, W)) << std::endl;
+		std::cout << "Have i flooded there?: " << (!getFloodMap(x, y-1)) << std::endl;
 		flood(size, x1, y1);
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++){

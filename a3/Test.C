@@ -54,8 +54,9 @@ int main(int argc, char *argv[])
   }
 
   cout << "Testing connectivity:" << endl;
-  cout << "Should be true: " << mymap->isConnected(0, 13, 1, 13, 2) << endl;
-  cout << "Should be false: " << mymap->isConnected(0, 13, 1, 0, 0) << endl;
+  cout << "Should be true: " << mymap->isConnected(0, 9, 1, 13, 2) << endl;
+  //cout << "Should be true: " << mymap->isConnected(0, 13, 1, 13, 2) << endl;
+  //cout << "Should be false: " << mymap->isConnected(0, 13, 1, 0, 0) << endl;
   //cout << "Should be true: " << mymap->isConnected(0, 23, 84, 83, 83) << endl;
   //cout << "Should be false: " << mymap->isConnected(2, 23, 84, 83, 83) << endl;
     
