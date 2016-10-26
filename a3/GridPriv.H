@@ -2,3 +2,7 @@
 
 // ...
 
+int width;
+int height;
+
+int [] map;
