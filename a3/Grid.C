@@ -36,8 +36,10 @@ Grid::Tile Grid::getTile(int x, int y) const {
 bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 	// check if object with size can reside on x1, y1
 	std::cout << "Checking for connection" << std::endl;
-	if (!canFit(size, x1, y1))
+	if (!canFit(size, x1, y1)) {
+		std::cout << "Cant fit at current spot" << endl;
 		return false;
+	}
 
 	// if floodmap is not accurate, then re-create it
 	if (!getFloodMap(x1, y1)) {
@@ -49,8 +51,11 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 	// check cache. Assumes that only units of same
 	// size are at play. otherwise need different caches
 	// for each different size or something
-	if (getFloodMap(x1, y1) || getFloodMap(x2, y2)) 
+	if (getFloodMap(x1, y1) || getFloodMap(x2, y2)) {
+		std::cout<< "spot is in cache" << std::endl;
 		return true;
+	}
+	std::cout << "default" << std::endl;
 	return false;
 }
 
