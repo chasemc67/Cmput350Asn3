@@ -10,7 +10,7 @@ Grid::Grid(int width, int height) {
 	int size = width*height;
 	map = new int[size];
 	floodMap = new bool[size];
-	memset(floodMap, 0, size*sizeof(*floodMap));
+	std::fill(floodMap, floodMap+size, 0);
 }
 	
 
@@ -41,7 +41,7 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 	// if floodmap is not accurate, then re-create it
 	if (!getFloodMap(x1, y1)) {
 		// zero floodmap, and set current point as reachable
-		memset(floodMap, 0, size*sizeof(*floodMap));
+		std::fill(floodMap, floodMap+size, 0);
 		flood(size, x1, y1);
 	}
 	// check cache. Assumes that only units of same
