@@ -37,7 +37,7 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 	// check if object with size can reside on x1, y1
 	std::cout << "Checking for connection" << std::endl;
 	if (!canFit(size, x1, y1)) {
-		std::cout << "Cant fit at current spot" << endl;
+		std::cout << "Cant fit at current spot" << std::endl;
 		return false;
 	}
 
