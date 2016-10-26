@@ -6,7 +6,7 @@ Grid::Grid(int width, int height) {
 	// the tile type enum
 	width = width;
 	height = height;
-	map = int[width*height];
+	map = new int[width*height];
 
 }
 	
@@ -14,6 +14,7 @@ Grid::Grid(int width, int height) {
 Grid::~Grid(){
 	// destroy the created 2 dimensional array, as well as
 	// any data members on the heap
+	delete [] map;
 }
 
 int Grid::getWidth() {
