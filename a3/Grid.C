@@ -11,6 +11,14 @@ Grid::Grid(int width, int height) {
 	for (int i = 0; i < height*width; i++) {
 		map[i] = GROUND;
 	}
+
+	for (int i = 0; i < width*2; i++) {
+		map[i] = WATER;
+	}
+
+	for (int i = width*2; i < width*4; i++) {
+		map[i] = BLOCKED;
+	}
 }
 	
 
