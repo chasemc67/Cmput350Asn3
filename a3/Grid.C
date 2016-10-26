@@ -50,7 +50,7 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++){
 				if (getFloodMap(j, i)) {
-					std::cout << j << ", " << i << " | "
+					std::cout << j << ", " << i << " | ";
 				}
 			}
 			std::cout << std::endl;
