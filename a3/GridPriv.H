@@ -26,6 +26,9 @@ bool canFit(int size, int x1, int y1) const {
 // If moving diagonally we can recursively check the 2 non-diag dirs
 // When we check non-diag dirs, we also check for tile type
 bool canMove(int size, int x1, int y1, Direction dir) const {
+	if (getTile(x1, y1) == BLOCKED)
+		return false;
+
 	switch(dir) {
 		case N:
 			return (canFit(size, x1, y1-1) && tilesAreSame(size, x1, y1, x1, y1-1));
