@@ -1,4 +1,5 @@
 #include "Grid.H"
+#include <iostream>
 	
 Grid::Grid(int width, int height) {
 	// Create width/height grid in memory
@@ -30,6 +31,7 @@ Grid::Tile Grid::getTile(int x, int y) const {
 
 bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 	// check if object with size can reside on x1, y1
+	std::cout << "Checking for fit" << std::endl;
 	if (!canFit(size, x1, y1))
 		return false;
 	// Check if object can move in direction
