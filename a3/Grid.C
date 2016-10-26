@@ -1,5 +1,5 @@
 #include "Grid.H"
-#include <iostream>
+// #include <iostream>
 	
 Grid::Grid(int width, int height) {
 	// Create width/height grid in memory
