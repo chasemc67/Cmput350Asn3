@@ -105,7 +105,7 @@ void OnMotion(int x, int y)
   mouseX1 = MouseToCoordX(x);
   mouseY1 = MouseToCoordY(y);
 
-  // cout << "Mouse at: " << x << ", " << y << endl;
+  cout << "Mouse at: " << x << ", " << y << endl;
 
   glutPostRedisplay();
 }
