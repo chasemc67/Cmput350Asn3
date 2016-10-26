@@ -1,3 +1,5 @@
+#include <iostream>
+
 int width;
 int height;
 int * map;
@@ -82,13 +84,8 @@ void setReachable(int x, int y) const {
 // Checks if node has already been expanded before expanding
 // To stop infinite flooding
 void flood(int size, int x, int y) const {
-	static int floodCount = 0;
-	// std::cout << "Flooding " << x << ", " << y << std::endl; 
+	std::cout << "Flooding " << x << ", " << y << std::endl; 
 	setReachable(x, y);
-	++floodCount;
-
-	if (floodCount > width*height)
-		return;
 
 	if(canMove(size, x, y, N) && !getFloodMap(x, y-1))
 		flood(size, x, y-1);
