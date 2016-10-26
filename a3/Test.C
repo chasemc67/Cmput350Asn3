@@ -52,6 +52,12 @@ int main(int argc, char *argv[])
   if (!mymap.get()) {
     return -1;
   }
+
+  cout << "Testing connectivity:" << endl;
+  cout << "Should be true: " << mymap->isConnected(0, 13, 1, 13, 2) << endl;
+  cout << "Should be false: " << mymap->isConnected(0, 13, 1, 0, 0) << endl;
+  cout << "Should be true: " << mymap->isConnected(0, 23, 84, 83, 83) << endl;
+  cout << "Should be false: " << mymap->isConnected(2, 23, 84, 83, 83) << endl;
     
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
@@ -262,10 +268,4 @@ void LoadMap(const char * filename)
       mymap->setTile(x, height-y-1, tile);
     }
   }
-
-  cout << "Testing connectivity:" << endl;
-  cout << "Should be true: " << mymap->isConnected(0, 13, 1, 13, 2) << endl;
-  cout << "Should be false: " << mymap->isConnected(0, 13, 1, 0, 0) << endl;
-  cout << "Should be true: " << mymap->isConnected(0, 23, 84, 83, 83) << endl;
-  cout << "Should be false: " << mymap->isConnected(2, 23, 84, 83, 83) << endl;
 }
