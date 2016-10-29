@@ -57,7 +57,7 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 		std::cout<< "spot is in cache" << std::endl;
 		return true;
 	}
-	std::cout << "default" << std::endl;
+	std::cout << "Spot is not reachable" << std::endl;
 	return false;
 }
 
