@@ -10,7 +10,7 @@ Grid::Grid(int width, int height) {
 	int size = width*height;
 	map = new int[size];
 	floodMap = new bool[size];
-	cahcedSize = new int;
+	cachedSize = new int;
 	std::fill(floodMap, floodMap+size, false);
 }
 	
@@ -18,7 +18,7 @@ Grid::Grid(int width, int height) {
 Grid::~Grid(){
 	// destroy the created 2 dimensional array, as well as
 	// any data members on the heap
-	delete cahcedSize;
+	delete cachedSize;
 	delete [] floodMap;
 	delete [] map;
 }
@@ -44,7 +44,7 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 	}
 
 	// if floodmap is not accurate, then re-create it
-	if (!getFloodMap(x1, y1) || size != *cahcedSize) {
+	if (!getFloodMap(x1, y1) || size != *cachedSize) {
 		*cachedSize = size;
 		// zero floodmap, and set current point as reachable
 		std::fill(floodMap, floodMap+size, false);
@@ -134,10 +134,6 @@ bool Grid::getFloodMap(int x, int y) const {
 	if (x < 0 || y < 0 || x >= width || y >= height)
 		return false;
 	return floodMap[x + y*width];
-};
-
-void Grid::setReachable(int x, int y) const {
-	floodMap[x + y*width] = true;
 };
 
 void Grid::setReachable(int x, int y) const {
