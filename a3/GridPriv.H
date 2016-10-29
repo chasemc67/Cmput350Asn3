@@ -7,16 +7,16 @@ bool * floodMap;
 int * cachedSize;
 
 struct Node {
-	Node(x_, y_) {
+	Node(int x_, int y_) {
 		x = x_;
 		y = y_;
 	}
-	
+
 	int x;
 	int y;
 	Node &cameFrom;
 	int gScore;
-}
+};
 
 // Check if unit can fit at coord
 bool canFit(int size, int x1, int y1) const;
