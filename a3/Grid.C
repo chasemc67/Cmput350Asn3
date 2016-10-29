@@ -63,6 +63,29 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 
 int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2, 
                        std::vector<Direction> &path) const {
+
+	std::cout << "Finding shortest path from " << x1 << ", " << y1 << " to " << x2 << ", " << y2 << std::endl;
+
+	std::vector<Node> closedSet;
+	std::vector<Node> openSet;
+
+	Node * endNode(x2, y2);
+
+	Node * startNode(x1, y1);
+	startNode -> cameFrom = NULL;
+	startNode -> gScore = 0;
+	startNode -> fScore = getHeuristic(&startNode, &endNode);
+
+
+	openSet.push_back(startNode);
+
+	// closedSet   	// The set of nodes already evaluated
+	// openSet 		// The set of discovered nodes. currently only start
+	return 1;
+}
+
+int getHeuristic(Node & startNode, Node & endNode) {
+	std::cout << "Getting euclidian distance from " << startNode->x ", " << startNode->y << " to " << endNode->x ", " << endNode->y << std::endl;
 	return 1;
 }
 
