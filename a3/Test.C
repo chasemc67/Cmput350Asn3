@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
   cout << "Should be true: " << mymap->isConnected(0, 13, 1, 13, 2) << endl;
   cout << "Should be false: " << mymap->isConnected(0, 13, 1, 0, 0) << endl;
   cout << "Should be true: " << mymap->isConnected(0, 23, 52, 51, 51) << endl;
-  //cout << "Should be false: " << mymap->isConnected(2, 23, 52, 51, 51) << endl;
+  cout << "Should be false: " << mymap->isConnected(2, 23, 52, 51, 51) << endl;
     
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
