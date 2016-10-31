@@ -159,9 +159,11 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 		current = openSet.begin()->second;
 		
-		// if (current == endNode) {
-		//	return reconstruct_path(cameFrom, current);
-		// }
+		if (current == endNode) {
+			// return reconstruct_path(cameFrom, current);
+			std::cout << "Found path" << std::endl;
+			return 1;
+		}
 
 		openSet.erase((current->y * current->x + current->x));
 		closedSet[(current->y * current->x + current->x)] = current;
