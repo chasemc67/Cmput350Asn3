@@ -12,7 +12,7 @@ public:
 		x = x_;
 		y = y_;
 
-		cameFrom = nullptr;
+		//cameFrom = nullptr;
 	};
 
 	bool operator>(const Node &rhs) {
@@ -22,7 +22,7 @@ public:
 
 	int x;
 	int y;
-	Node &cameFrom;
+	//Node &cameFrom;
 	int gScore;
 };
 
