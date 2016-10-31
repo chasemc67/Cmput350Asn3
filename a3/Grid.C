@@ -78,7 +78,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	// cost nothing to get from start node to this node
 	startNode->gScore = 0;
 	// cost to get from start node to goal is entirely heuristic
-	startNode->fScore = getHeuristicDistance(*startNode, *endNode);
+	startNode->fScore = startNode->getHeuristicDistance(*endNode);
 
 	// Set of nodes already evaluated
 	std::vector<Node> closedSet;
@@ -93,7 +93,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 	std::shared_ptr<Node> t1(new Node(0, 0));
 	std::shared_ptr<Node> t2(new Node(3, 5));
-	std::cout << boost::format("Testing heurstic distance for 0,0 to 3,5: %d\n") % getHeuristicDistance(*t1, *t2);
+	std::cout << boost::format("Testing heurstic distance for 0,0 to 3,5: %d\n") % t1->getHeuristicDistance(*t2);
 	
 	std::cout << std::endl;
 	std::cout << "======================================" << std::endl;	
@@ -204,8 +204,8 @@ void Grid::flood(int size, int x, int y) const {
 		flood(size, x+1, y+1);
 };
 
-void Grid::getHeuristicDistance(Node & from, Node & to) {
-	sqrt(((from->x - to->x)^2) + ((from->y - to->y)^2));
+void Grid::Node::getHeuristicDistance(const Node & to) {
+	sqrt(((this->x - to->x)^2) + ((this->y - to->y)^2));
 }
 
 // Node implementation
