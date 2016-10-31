@@ -88,16 +88,37 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	// Set of discovered nodes to be evaluated
 	// initially contains only the start node
 	// Open set must be sorted, with lowest fScore at the top.
-	std::map<Node> openSet;
+	std::map<int, Node> openSet;
 
 	std::cout << std::endl;
 	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
 	std::cout << std::endl;
 
+	typedef std::map<int, Node> M;
+	bool value_comparer(M::value_type &i1, M::value_type &i2)
+	{
+		return i1.second<i2.second;
+	}
+
+	M::iterator itor = std::max_element(m.begin(), m.end(),value_comparer);
+
+
+	std::shared_ptr<Node> t1(new Node(10, 10));
+	std::shared_ptr<Node> t2(new Node(12, 12));
+	std::shared_ptr<Node> t3(new Node(8, 8));
+	std::shared_ptr<Node> t4(new Node(11, 11));
+	openSet[(t1->y * t1->x + t1->x)] = t1;
+	openSet[(t2->y * t2->x + t1->x)] = t2;
+	openSet[(t3->y * t3->x + t3->x)] = t3;
+	openSet[(t4->y * t4->x + t4->x)] = t4;
+
+
+
+	// openSet.add(startNode)
 	while(!openSet.empty()) {
 		/* 
 		Node * current = openSet[nodeWithSmallestFScore]
-		if (current == goal) {
+		if (current == endNode) {
 			return reconstruct_path(cameFrom, current);
 		}
 
@@ -112,12 +133,12 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 			if (!openSet.contains(neighbor))
 				openSet.add(neighbor)
-			else if (tentative_gScore >= neightboar.gScore)
+			else if (tentative_gScore >= neighbor.gScore)
 				continue
 
-			neighbor.comeFrom = current;
+			neighbor.cameFrom = current;
 			neighbor.gScore = tentative_gScore;
-			neighbor.fScore = neighbor.gScore + neighbor.getHeuristicDistance(goal)
+			neighbor.fScore = neighbor.gScore + neighbor.getHeuristicDistance(*endNode)
 		}
 
 		*/
@@ -125,11 +146,6 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	}
 	return 0;
 }
-
-// int getHeuristic(Node & startNode, Node & endNode) {
-// 	std::cout << "Getting euclidian distance from " << startNode->x ", " << startNode->y << " to " << endNode->x ", " << endNode->y << std::endl;
-// 	return 1;
-// }
 
 void Grid::setTile(int x, int y, Tile tile) {
 	map[x + y*width] = tile;
