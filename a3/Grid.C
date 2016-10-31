@@ -1,7 +1,5 @@
 #include "Grid.H"
 #include <iostream>
-
-#include <boost>
 	
 Grid::Grid(int width, int height) {
 	// Create width/height grid in memory
@@ -70,11 +68,14 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 
 	// ** Testing 
-	boost::shared_ptr<Node> n1(new Node(12, 12));
-	boost::shared_ptr<Node> n2(new Node(10, 10));
+	// boost::shared_ptr<Node> n1(new Node(12, 12));
+	// boost::shared_ptr<Node> n2(new Node(10, 10));
+	Node * n1 = new Node(12, 12);
+	Node * n2 = new Node(10,10);
 
 	std::cout << "n1: " << n1->x << ", " << n1->y << std::endl;
-	std::cout << boost::format("node n1: %d, %d") % n1->x % %n2->y;
+	std::cout << "n1 > that n2? : " << n1 > n2 << std::endl;
+	// std::cout << boost::format("node n1: %d, %d") % n1->x % %n2->y;
 	// ** Testing 
 
 	// std::vector<Node> closedSet;
