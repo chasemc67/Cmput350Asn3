@@ -82,7 +82,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	Node * startNode = new Node(x1, y1);
 	//startNode -> cameFrom = startNode;
 	startNode -> gScore = 0;
-	startNode -> fScore = getHeuristic(&startNode, &endNode);
+	//startNode -> fScore = getHeuristic(&startNode, &endNode);
 
 
 	// openSet.push_back(startNode);
