@@ -78,7 +78,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	// cost nothing to get from start node to this node
 	startNode->gScore = 0;
 	// cost to get from start node to goal is entirely heuristic
-	startNode->fScore = getHeuristicDistance(*startNode *endNode);
+	startNode->fScore = getHeuristicDistance(*startNode, *endNode);
 
 	// Set of nodes already evaluated
 	std::vector<Node> closedSet;
