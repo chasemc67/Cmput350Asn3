@@ -118,6 +118,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	std::cout << "Testing map" << std::endl; 
 	while (it != openSet.end()) {
 		std::cout << boost::format("%d, %d\n") % it->second->x % it->second->y;
+		it++;
 	}
 
 
