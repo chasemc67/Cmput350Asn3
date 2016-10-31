@@ -81,9 +81,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	std::cout << "n1.x > n2.x checked with operator overlading : " << (*n1 > *n2) << std::endl;
 	std::cout << "n1.x > n2.x checked with element compare : " << (n1->x > n2->x) << std::endl;
 	std::cout << std::endl;
-
-	delete n1;
-	delete n2;
+	
 	// std::cout << boost::format("node n1: %d, %d") % n1->x % %n2->y;
 	// ** Testing 
 
