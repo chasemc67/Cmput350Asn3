@@ -70,11 +70,12 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	// ** Testing 
 	// boost::shared_ptr<Node> n1(new Node(12, 12));
 	// boost::shared_ptr<Node> n2(new Node(10, 10));
-	Node * n1 = new Node(12, 12);
-	Node * n2 = new Node(10,10);
+	Node * n1 = new Node(x1, y1);
+	Node * n2 = new Node(x2, y2);
 
 	std::cout << "n1: " << n1->x << ", " << n1->y << std::endl;
-	std::cout << "n1 > that n2? : " << (n1 > n2) << std::endl;
+	std::cout << "n2: " << n2->x << ", " << n2->y << std::endl;
+	std::cout << "n1 by x > than n2 by x? : " << (n1 > n2) << std::endl;
 	// std::cout << boost::format("node n1: %d, %d") % n1->x % %n2->y;
 	// ** Testing 
 
