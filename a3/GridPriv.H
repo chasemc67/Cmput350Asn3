@@ -13,11 +13,17 @@ public:
 		y = y_;
 	};
 
+	Node &
+
 	int x;
 	int y;
 	Node &cameFrom;
 	int gScore;
 };
+
+inline bool operator>(const Node &lhs const Node &rhs) {
+	return (lhs->x > rhs->x);
+}
 
 // Check if unit can fit at coord
 bool canFit(int size, int x1, int y1) const;
