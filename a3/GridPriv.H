@@ -13,8 +13,6 @@ public:
 		y = y_;
 	};
 
-	Node &
-
 	int x;
 	int y;
 	Node &cameFrom;
