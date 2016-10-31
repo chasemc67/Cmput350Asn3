@@ -95,10 +95,10 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	return 1;
 }
 
-int getHeuristic(Node & startNode, Node & endNode) {
-	std::cout << "Getting euclidian distance from " << startNode->x ", " << startNode->y << " to " << endNode->x ", " << endNode->y << std::endl;
-	return 1;
-}
+// int getHeuristic(Node & startNode, Node & endNode) {
+// 	std::cout << "Getting euclidian distance from " << startNode->x ", " << startNode->y << " to " << endNode->x ", " << endNode->y << std::endl;
+// 	return 1;
+// }
 
 void Grid::setTile(int x, int y, Tile tile) {
 	map[x + y*width] = tile;
