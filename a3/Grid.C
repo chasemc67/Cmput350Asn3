@@ -11,6 +11,8 @@
 #include <cmath>
 
 #include <map>
+
+typedef std::map<int, Node> M;
 	
 Grid::Grid(int width, int height) {
 	// Create width/height grid in memory
@@ -100,8 +102,6 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	std::cout << std::endl;
 	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
 	std::cout << std::endl;
-
-	typedef std::map<int, Node> M;
 
 	M::iterator itor = std::max_element(m.begin(), m.end(),value_comparer);
 
