@@ -37,9 +37,9 @@ Grid::Tile Grid::getTile(int x, int y) const {
 
 bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 	// check if object with size can reside on x1, y1
-	std::cout << "Checking for connection" << std::endl;
+	// std::cout << "Checking for connection" << std::endl;
 	if (!canFit(size, x1, y1)) {
-		std::cout << "Cant fit at current spot" << std::endl;
+		// std::cout << "Cant fit at current spot" << std::endl;
 		return false;
 	}
 
@@ -54,17 +54,17 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 	// size are at play. otherwise need different caches
 	// for each different size or something
 	if (getFloodMap(x2, y2)) {
-		std::cout<< "spot is in cache" << std::endl;
+		// std::cout<< "spot is in cache" << std::endl;
 		return true;
 	}
-	std::cout << "Spot is not reachable" << std::endl;
+	// std::cout << "Spot is not reachable" << std::endl;
 	return false;
 }
 
 int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2, 
                        std::vector<Direction> &path) const {
 
-	std::cout << "Finding shortest path from " << x1 << ", " << y1 << " to " << x2 << ", " << y2 << std::endl;
+	//std::cout << "Finding shortest path from " << x1 << ", " << y1 << " to " << x2 << ", " << y2 << std::endl;
 
 
 	// ** Testing 
