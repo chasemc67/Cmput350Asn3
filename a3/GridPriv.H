@@ -6,8 +6,7 @@ int * map;
 bool * floodMap;
 int * cachedSize;
 
-class Node {
-public:
+struct Node {
 	Node(int x_, int y_);
 	~Node(){};
 
