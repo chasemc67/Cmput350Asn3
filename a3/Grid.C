@@ -207,10 +207,10 @@ void Grid::flood(int size, int x, int y) const {
 
 
 
-bool Node::operator>(const Node &rhs) {
+bool Grid::Node::operator>(const Node &rhs) {
 	return ((this->x > rhs.x));
 }
 
-bool Node::operator<(const Node &rhs) {
+bool Grid::Node::operator<(const Node &rhs) {
 	return ((this->x < rhs.x));
 }
