@@ -206,7 +206,7 @@ void Grid::flood(int size, int x, int y) const {
 };
 
 
-
+/*
 bool Grid::Node::operator>(const Node &rhs) {
 	std::cout << std::endl;
 	std::cout << "testing > operator for " << std::endl;
@@ -223,3 +223,4 @@ bool Grid::Node::operator<(const Node &rhs) {
 	std::cout << std::endl;
 	return ((this->x < rhs.x));
 }
+*/
