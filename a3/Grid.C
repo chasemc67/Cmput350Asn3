@@ -205,6 +205,7 @@ void Grid::flood(int size, int x, int y) const {
 };
 
 int Grid::Node::getHeuristicDistance(const Node & to) {
+	std::cout << boost::format("heuristic x diff:%d y diff:%d \n") % (this->x - to.x) % (this->y - to.y);
 	return (sqrt(((this->x - to.x)^2) + ((this->y - to.y)^2)));
 }
 
