@@ -11,6 +11,9 @@ public:
 	Node(int x_, int y_) {
 		x = x_;
 		y = y_;
+
+		comeFrom = nullptr;
+		gScore = NULL;
 	};
 
 	int x;
@@ -19,8 +22,8 @@ public:
 	int gScore;
 };
 
-inline bool operator>(const Node &lhs const Node &rhs) {
-	return (lhs->x > rhs->x);
+inline bool operator>(const Node &lhs, const Node &rhs) {
+	return ((lhs->x > rhs->x));
 }
 
 // Check if unit can fit at coord
