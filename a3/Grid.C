@@ -108,6 +108,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	std::shared_ptr<Node> t2(new Node(12, 12));
 	std::shared_ptr<Node> t3(new Node(8, 8));
 	std::shared_ptr<Node> t4(new Node(11, 11));
+	std::shared_ptr<Node> t5(new Node(5, 5));
 	openSet[(t1->y * t1->x + t1->x)] = t1;
 	openSet[(t2->y * t2->x + t1->x)] = t2;
 	openSet[(t3->y * t3->x + t3->x)] = t3;
@@ -121,6 +122,12 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 		it++;
 	}
 
+	std::cout<< "Testing itor" <<endl;
+	openSet[(t5->y * t5->x + t5->x)] = t5;
+	while (it != openSet.end()) {
+		std::cout << boost::format("%d, %d\n") % it->second->x % it->second->y;
+		it++;
+	}
 
 	// openSet.add(startNode)
 	//while(!openSet.empty()) {
