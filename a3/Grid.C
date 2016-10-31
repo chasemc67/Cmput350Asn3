@@ -93,13 +93,6 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
 	std::cout << std::endl;
 
-	std::shared_ptr<Node> t1(new Node(0, 0));
-	std::shared_ptr<Node> t2(new Node(3, 5));
-	std::cout << boost::format("Testing heurstic distance for 0,0 to 3,5: %d\n") % t1->getHeuristicDistance(*t2);
-	
-	std::cout << std::endl;
-	std::cout << "======================================" << std::endl;	
-
 	return 1;
 }
 
