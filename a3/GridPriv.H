@@ -14,9 +14,6 @@ public:
 	bool operator>(const Node &rhs);
 	bool operator<(const Node &rhs);
 
-	// Get the euclidian distance from one node to another
-	int getHeuristicDistance(const Node & to);
-
 	int x;
 	int y;
 	//Node &cameFrom;
@@ -46,3 +43,6 @@ void setReachable(int x, int y) const;
 // Checks if node has already been expanded before expanding
 // To stop infinite flooding
 void flood(int size, int x, int y) const;
+
+// Get the euclidian distance from one node to another
+int getHeuristicDistance(const Node & from, const Node & to);
