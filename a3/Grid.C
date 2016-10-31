@@ -85,7 +85,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	// std::shared_ptr<Node> t2(new Node(3, 5));
 	Node * t1 = new Node(0,0);
 	Node * t2 = new Node(3,5);
-	std::cout << boost::format("Testing heurstic distance for 0,0 to 3,5: %d\n") % getHeuristic(t1, t2);
+	std::cout << boost::format("Testing heurstic distance for 0,0 to 3,5: %d\n") % getHeuristicDistance(t1, t2);
 	delete t1;
 	delete t2;
 
