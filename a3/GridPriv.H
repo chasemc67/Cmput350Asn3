@@ -17,12 +17,12 @@ public:
 
 	bool operator>(const Node &rhs) {
 		// return ((this->x > rhs.x));
-		return ((this.x > 9));
+		return ((this->x));
 	};
 
 	bool operator<(const Node &rhs) {		
 		// return ((this->x < rhs.x));
-		return ((this.x < 9));
+		return ((this->x));
 	};
 
 
