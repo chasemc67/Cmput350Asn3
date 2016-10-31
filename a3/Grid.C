@@ -93,9 +93,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	std::vector<Node> openSet;
 
 	std::cout << std::endl;
-	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % n1->x % n1->y % n2->x % n2->y;
-	std::cout << "n1.x > n2.x checked with operator overlading : " << (*n1 > *n2) << std::endl;
-	std::cout << "n1.x > n2.x checked with element compare : " << (n1->x > n2->x) << std::endl;
+	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
 	std::cout << std::endl;
 
 	std::shared_ptr<Node> t1(new Node(0, 0));
