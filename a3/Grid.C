@@ -139,15 +139,8 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	openSet[(startNode->y * startNode->x + startNode->x)] = startNode;
 	std::shared_ptr<Node> current;
 	while(!openSet.empty()) { 
-		current = openSet.begin()->second;
-		
-		// if (current == endNode) {
-		//	return reconstruct_path(cameFrom, current);
-		// }
 
-		openSet.erase((current->y * current->x + current->x));
-		closedSet[(current->y * current->x + current->x)] = current;
-
+		std::cout << std::endl;
 		std::cout << "open set: " << std::endl;
 		it = openSet.begin();
 		while (it != openSet.end()) {
@@ -161,6 +154,17 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 			std::cout << boost::format("%d, %d, f:%d\n") % it->second->x % it->second->y % it->second->fScore;
 			it++;
 		}
+
+
+
+		current = openSet.begin()->second;
+		
+		// if (current == endNode) {
+		//	return reconstruct_path(cameFrom, current);
+		// }
+
+		openSet.erase((current->y * current->x + current->x));
+		closedSet[(current->y * current->x + current->x)] = current;
 
 		/*
 
