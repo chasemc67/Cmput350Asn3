@@ -15,13 +15,9 @@ public:
 		//cameFrom = nullptr;
 	};
 
-	bool operator>(const Node &rhs) {
-		return ((this->x > rhs.x));
-	}
+	bool operator>(const Node &rhs);
 
-	bool operator<(const Node &rhs) {
-		return ((this->x < rhs.x));
-	}
+	bool operator<(const Node &rhs);
 
 
 	int x;
