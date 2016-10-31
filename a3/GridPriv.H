@@ -13,6 +13,7 @@ public:
 
 	bool operator>(const Node &rhs);
 	bool operator<(const Node &rhs);
+	bool operator==(const Node &rhs);
 	// Get the euclidian distance from one node to another
 	int getHeuristicDistance(const Node & to);
 
