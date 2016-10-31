@@ -84,16 +84,46 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 	// Set of nodes already evaluated
 	std::vector<Node> closedSet;
+
 	// Set of discovered nodes to be evaluated
 	// initially contains only the start node
 	// Open set must be sorted, with lowest fScore at the top.
-	std::vector<Node> openSet;
+	std::map<Node> openSet;
 
 	std::cout << std::endl;
 	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
 	std::cout << std::endl;
 
-	return 1;
+	while(!openSet.empty()) {
+		/* 
+		Node * current = openSet[nodeWithSmallestFScore]
+		if (current == goal) {
+			return reconstruct_path(cameFrom, current);
+		}
+
+		openSet.remove(current);
+		closedSet.add(current);
+
+		for (neighbor : all 8 reachable neighbors for current) {
+			if (closedSet.contains(neighbor))
+				continue;
+
+			tentative_gScore = current.gScore() + distToNeighbor(neighbor)
+
+			if (!openSet.contains(neighbor))
+				openSet.add(neighbor)
+			else if (tentative_gScore >= neightboar.gScore)
+				continue
+
+			neighbor.comeFrom = current;
+			neighbor.gScore = tentative_gScore;
+			neighbor.fScore = neighbor.gScore + neighbor.getHeuristicDistance(goal)
+		}
+
+		*/
+
+	}
+	return 0;
 }
 
 // int getHeuristic(Node & startNode, Node & endNode) {
