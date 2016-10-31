@@ -113,10 +113,10 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	t4->fScore = 110;
 	std::shared_ptr<Node> t5(new Node(8, 8));
 	t5->fScore = 50;
-	openSet[(t1->y * t1->x + t1->x)] = t1;
-	openSet[(t2->y * t2->x + t1->x)] = t2;
-	openSet[(t3->y * t3->x + t3->x)] = t3;
-	openSet[(t4->y * t4->x + t4->x)] = t4;
+	openSet[t1->fScore] = t1;
+	openSet[t2->fScore] = t2;
+	openSet[t3->fScore] = t3;
+	openSet[t4->fScore] = t4;
 
 
 	std::map<int, std::shared_ptr<Node>>::iterator it = openSet.begin();
@@ -127,7 +127,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	}
 
 	std::cout<< "Testing itor" << std::endl;
-	openSet[(t5->y * t5->x + t5->x)] = t5;
+	openSet[t5->fScore] = t5;
 	std::cout << boost::format("min is: %d, %d, f:%d\n") % openSet.begin()->second->x % openSet.begin()->second->y % openSet.begin()->second->fScore;
 	it = openSet.begin();
 	while (it != openSet.end()) {
@@ -136,7 +136,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	}
 
 	// openSet.add(startNode)
-	openSet[(startNode->y * startNode->x + startNode->x)] = startNode;
+	openSet[startNode->fScore] = startNode;
 	std::shared_ptr<Node> current;
 	while(!openSet.empty()) { 
 
