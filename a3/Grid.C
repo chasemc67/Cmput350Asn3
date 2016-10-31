@@ -96,7 +96,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	// Set of discovered nodes to be evaluated
 	// initially contains only the start node
 	// Open set must be sorted, with lowest fScore at the top.
-	std::map<int, Node> openSet;
+	std::map<int, std::shared_ptr<Node>> openSet;
 
 	std::cout << std::endl;
 	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
@@ -114,7 +114,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	openSet[(t4->y * t4->x + t4->x)] = t4;
 
 
-	std::map<int, Node>::iterator it = openSet.begin();
+	std::map<int, std::shared_ptr<Node>>::iterator it = openSet.begin();
 	std::cout << "Testing map" << std::endl; 
 	while (it != openSet.end()) {
 		std::cout << boost::format("%d, %d\n") % it->second->x % it->second->y;
