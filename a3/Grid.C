@@ -11,8 +11,6 @@
 #include <cmath>
 
 #include <map>
-
-typedef std::map<int, Node> M;
 	
 Grid::Grid(int width, int height) {
 	// Create width/height grid in memory
@@ -74,10 +72,11 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 	return false;
 }
 
+/*
 bool value_comparer(M::value_type &i1, M::value_type &i2)
 {
-	return i1.second<i2.second;
-}
+		return i1.second<i2.second;
+} */
 
 int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2, 
                        std::vector<Direction> &path) const {
@@ -103,8 +102,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
 	std::cout << std::endl;
 
-	M::iterator itor = std::max_element(m.begin(), m.end(),value_comparer);
-
+	//typedef std::map<int, Node> M;
 
 	std::shared_ptr<Node> t1(new Node(10, 10));
 	std::shared_ptr<Node> t2(new Node(12, 12));
@@ -116,9 +114,15 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	openSet[(t4->y * t4->x + t4->x)] = t4;
 
 
+	std::map<int, Node>::iterator it = openSet.begin();
+	std::cout << "Testing map" << std::endl; 
+	while (it != openSet.end()) {
+		std::cout << boost::format("%d, %d\n") % it->second->x % it->second->y;
+	}
+
 
 	// openSet.add(startNode)
-	while(!openSet.empty()) {
+	//while(!openSet.empty()) {
 		/* 
 		Node * current = openSet[nodeWithSmallestFScore]
 		if (current == endNode) {
@@ -146,7 +150,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 		*/
 
-	}
+	// }
 	return 0;
 }
 
