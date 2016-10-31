@@ -1,0 +1,5 @@
+Flooding is clipping corners for size 2 and 3 units.
+
+Implemennt < and == operator for node class
+
+use std::map for bst 	
