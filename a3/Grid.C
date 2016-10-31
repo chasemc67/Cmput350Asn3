@@ -72,6 +72,11 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 	return false;
 }
 
+bool value_comparer(M::value_type &i1, M::value_type &i2)
+{
+	return i1.second<i2.second;
+}
+
 int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2, 
                        std::vector<Direction> &path) const {
 
@@ -97,10 +102,6 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	std::cout << std::endl;
 
 	typedef std::map<int, Node> M;
-	bool value_comparer(M::value_type &i1, M::value_type &i2)
-	{
-		return i1.second<i2.second;
-	}
 
 	M::iterator itor = std::max_element(m.begin(), m.end(),value_comparer);
 
