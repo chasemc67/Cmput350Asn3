@@ -6,7 +6,8 @@ int * map;
 bool * floodMap;
 int * cachedSize;
 
-struct Node {
+class Node {
+public:
 	Node(int x_, int y_) {
 		x = x_;
 		y = y_;
