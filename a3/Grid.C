@@ -67,7 +67,7 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2, 
                        std::vector<Direction> &path) const {
 
-	//std::cout << "Finding shortest path from " << x1 << ", " << y1 << " to " << x2 << ", " << y2 << std::endl;
+	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % n1->x % n1->y % n2->x % n2->y;
 
 
 	// ** Testing 
@@ -83,7 +83,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	std::cout << "n1.x > n2.x checked with element compare : " << (n1->x > n2->x) << std::endl;
 	std::cout << std::endl;
 
-	std::cout << boost::format("node n1: %d, %d") % n1->x % n2->y;
+	std::cout << boost::format("node n1: %d, %d\n") % n1->x % n2->y;
 	// ** Testing 
 
 	// std::vector<Node> closedSet;
