@@ -205,7 +205,7 @@ void Grid::flood(int size, int x, int y) const {
 };
 
 int Grid::Node::getHeuristicDistance(const Node & to) {
-	return (sqrt(((this->x - to->x)^2) + ((this->y - to->y)^2)));
+	return (sqrt(((this->x - to.x)^2) + ((this->y - to.y)^2)));
 }
 
 // Node implementation
