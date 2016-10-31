@@ -9,6 +9,8 @@
 #include <limits>
 // square numbers
 #include <cmath>
+
+#include <map>
 	
 Grid::Grid(int width, int height) {
 	// Create width/height grid in memory
