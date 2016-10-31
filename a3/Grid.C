@@ -1,8 +1,12 @@
 #include "Grid.H"
 #include <iostream>
 
+// Shared pointers
 #include <memory>
+// Formated strings
 #include "boost/format.hpp"
+// infinity for a* alg
+#include <limits>
 	
 Grid::Grid(int width, int height) {
 	// Create width/height grid in memory
@@ -68,34 +72,39 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
                        std::vector<Direction> &path) const {
 
 	
-	// ** Testing 
-	std::shared_ptr<Node> n1(new Node(x1, y1));
-	std::shared_ptr<Node> n2(new Node(x2, y2));
-	// Node * n1 = new Node(12, 12);
-	// Node * n2 = new Node(10, 10);
+	std::shared_ptr<Node> startNode(new Node(x1, y1));
+	std::shared_ptr<Node> endNode(new Node(x2, y2));
+
+	// cost nothing to get from start node to this node
+	startNode->gScore = 0;
+	// cost to get from start node to goal is entirely heuristic
+	startNode->fScore = getHeuristicDistance(startNode, endNode);
+
+
+	std::shared_ptr<Node> t1(new Node(0, 0));
+	std::shared_ptr<Node> t2(new Node(3, 5));
+	std::cout << boost::format("Testing heurstic distance for 0,0 to 3,5: %d\n") % getHeuristic(t1, t2);
+
+	// Set of nodes already evaluated
+	std::vector<Node> closedSet;
+	// Set of discovered nodes to be evaluated
+	// initially contains only the start node
+	// Open set must be sorted, with lowest fScore at the top.
+	std::vector<Node> openSet;
+
 	std::cout << std::endl;
 	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % n1->x % n1->y % n2->x % n2->y;
 	std::cout << "n1.x > n2.x checked with operator overlading : " << (*n1 > *n2) << std::endl;
 	std::cout << "n1.x > n2.x checked with element compare : " << (n1->x > n2->x) << std::endl;
-
-	std::cout << boost::format("node n1: %d, %d\n") % n1->x % n2->y;
 	std::cout << std::endl;
-	// ** Testing 
 
-	// std::vector<Node> closedSet;
-	// std::vector<Node> openSet;
-	// Node * endNode = new Node(x2, y2);
+	std::shared_ptr<Node> t1(new Node(0, 0));
+	std::shared_ptr<Node> t2(new Node(3, 5));
+	std::cout << boost::format("Testing heurstic distance for 0,0 to 3,5: %d\n") % getHeuristic(t1, t2);
+	
+	std::cout << std::endl;
+	std::cout << "======================================" << std::endl;	
 
-	// Node * startNode = new Node(x1, y1);
-	//startNode -> cameFrom = startNode;
-	// startNode -> gScore = 0;
-	//startNode -> fScore = getHeuristic(&startNode, &endNode);
-
-
-	// openSet.push_back(startNode);
-
-	// closedSet   	// The set of nodes already evaluated
-	// openSet 		// The set of discovered nodes. currently only start
 	return 1;
 }
 
@@ -202,6 +211,18 @@ void Grid::flood(int size, int x, int y) const {
 		flood(size, x+1, y+1);
 };
 
+void Grid::getHeuristicDistance(const Node & from, const Node & to) {
+	sqrt(((from->x - to->x)^2) + ((from->y - to->y)^2));
+}
+
+// Node implementation
+
+Grid::Node::Node(int x_, int y_) {
+		x = x_;
+		y = y_;
+		gScore = std::numeric_limits<int>::max();
+		fScore = std::numeric_limits<int>::max();
+};
 
 bool Grid::Node::operator>(const Node &rhs) {
 	return ((this->x > rhs.x));

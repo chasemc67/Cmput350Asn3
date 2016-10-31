@@ -8,21 +8,8 @@ int * cachedSize;
 
 class Node {
 public:
-	Node(int x_, int y_) {
-		x = x_;
-		y = y_;
-
-		//cameFrom = nullptr;
-	};
-
-	/*
-	bool operator>(const Node &rhs) {
-		return ((this->x > rhs.x));
-	};
-
-	bool operator<(const Node &rhs) {		
-		return ((this->x < rhs.x));
-	}; */
+	Node(int x_, int y_);
+	~Node(){};
 
 	bool operator>(const Node &rhs);
 	bool operator<(const Node &rhs);
@@ -31,6 +18,7 @@ public:
 	int y;
 	//Node &cameFrom;
 	int gScore;
+	int fScore;
 };
 
 // Check if unit can fit at coord
@@ -55,3 +43,6 @@ void setReachable(int x, int y) const;
 // Checks if node has already been expanded before expanding
 // To stop infinite flooding
 void flood(int size, int x, int y) const;
+
+// Get the euclidian distance from one node to another
+int getHeuristicDistance(const Node & from, const Node & to) const;
