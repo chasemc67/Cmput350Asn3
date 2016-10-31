@@ -45,4 +45,4 @@ void setReachable(int x, int y) const;
 void flood(int size, int x, int y) const;
 
 // Get the euclidian distance from one node to another
-int getHeuristicDistance(const Node & from, const Node & to) const;
+int getHeuristicDistance(const Node & from, const Node & to);
