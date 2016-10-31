@@ -76,8 +76,8 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	std::cout << std::endl;
 	std::cout << "n1: " << n1->x << ", " << n1->y << std::endl;
 	std::cout << "n2: " << n2->x << ", " << n2->y << std::endl;
-	std::cout << "n1 by x > than n2 by x? : " << (n1 > n2) << std::endl;
-	std::cout << "n1 by x > than n2 by x? : " << (n1->x > n2->x) << std::endl;
+	std::cout << "n1.x > n2.x checked with operator overlading : " << (n1 > n2) << std::endl;
+	std::cout << "n1.x > n2.x checked with element compare : " << (n1->x > n2->x) << std::endl;
 	std::cout << std::endl;
 
 	delete n1;
@@ -204,3 +204,13 @@ void Grid::flood(int size, int x, int y) const {
 	if(canMove(size, x, y, SE) && !getFloodMap(x+1, y+1))
 		flood(size, x+1, y+1);
 };
+
+
+
+bool Node::operator>(const Node &rhs) {
+	return ((this->x > rhs.x));
+}
+
+bool Node::operator<(const Node &rhs) {
+	return ((this->x < rhs.x));
+}
