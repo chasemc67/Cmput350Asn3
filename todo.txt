@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-Flooding is clipping corners for size 2 and 3 units
-
-Implement < and == operator for node class
-
-use std::map for bst
-=======
 Flooding is clipping corners for size 2 and 3 units.
-
 Implemennt < and == operator for node class
-
-<<<<<<< Updated upstream
-use std::map for bst 	
-
-=======
-use std::map for bst 	
->>>>>>> Stashed changes
->>>>>>> master
+use std::map for bst
