@@ -12,12 +12,11 @@ public:
 		x = x_;
 		y = y_;
 
-		comeFrom = nullptr;
-		gScore = NULL;
+		cameFrom = nullptr;
 	};
 
 	bool operator>(const Node &rhs) {
-		return ((this->x > rhs->x));
+		return ((this->x > rhs.x));
 	}
 
 
