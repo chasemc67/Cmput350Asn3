@@ -66,9 +66,17 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 	std::cout << "Finding shortest path from " << x1 << ", " << y1 << " to " << x2 << ", " << y2 << std::endl;
 
-	std::vector<Node> closedSet;
-	std::vector<Node> openSet;
 
+	// ** Testing 
+	std::shared_ptr<Node> n1(new Node(12, 12));
+	std::shared_ptr<Node> n2(new Node(10, 10));
+
+	std::cout << "n1: " << n1->x << ", " << n1->y << std::endl;
+	std::cout << boost::format("node n1: %d, %d") % n1->x % %n2->y;
+	// ** Testing 
+
+	// std::vector<Node> closedSet;
+	// std::vector<Node> openSet;
 	Node * endNode = new Node(x2, y2);
 
 	Node * startNode = new Node(x1, y1);
@@ -77,7 +85,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	startNode -> fScore = getHeuristic(&startNode, &endNode);
 
 
-	openSet.push_back(startNode);
+	// openSet.push_back(startNode);
 
 	// closedSet   	// The set of nodes already evaluated
 	// openSet 		// The set of discovered nodes. currently only start
