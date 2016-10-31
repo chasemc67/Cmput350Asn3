@@ -76,7 +76,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	std::cout << std::endl;
 	std::cout << "n1: " << n1->x << ", " << n1->y << std::endl;
 	std::cout << "n2: " << n2->x << ", " << n2->y << std::endl;
-	std::cout << "n1.x > n2.x checked with operator overlading : " << (n1 > n2) << std::endl;
+	std::cout << "n1.x > n2.x checked with operator overlading : " << (*n1 > *n2) << std::endl;
 	std::cout << "n1.x > n2.x checked with element compare : " << (n1->x > n2->x) << std::endl;
 	std::cout << std::endl;
 
