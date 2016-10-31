@@ -73,10 +73,11 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	Node * n1 = new Node(12, 12);
 	Node * n2 = new Node(10, 10);
 
+	std::cout << std::endl << std::endl;
 	std::cout << "n1: " << n1->x << ", " << n1->y << std::endl;
 	std::cout << "n2: " << n2->x << ", " << n2->y << std::endl;
 	std::cout << "n1 by x > than n2 by x? : " << (n1 > n2) << std::endl;
-
+	std::cout << std::endl << std::endl;
 
 	delete n1;
 	delete n2;
