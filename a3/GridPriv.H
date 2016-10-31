@@ -16,13 +16,11 @@ public:
 	};
 
 	bool operator>(const Node &rhs) {
-		// return ((this->x > rhs.x));
-		return 0;
+		return ((this->x > rhs.x));
 	};
 
 	bool operator<(const Node &rhs) {		
-		// return ((this->x < rhs.x));
-		return 0;
+		return ((this->x < rhs.x));
 	};
 
 
