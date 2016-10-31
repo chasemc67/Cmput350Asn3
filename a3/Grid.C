@@ -68,8 +68,8 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 
 	// ** Testing 
-	shared_ptr<Node> n1(new Node(12, 12));
-	shared_ptr<Node> n2(new Node(10, 10));
+	std::shared_ptr<Node> n1(new Node(12, 12));
+	std::shared_ptr<Node> n2(new Node(10, 10));
 
 	std::cout << "n1: " << n1->x << ", " << n1->y << std::endl;
 	std::cout << boost::format("node n1: %d, %d") % n1->x % %n2->y;
