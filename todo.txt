@@ -1,1 +1,5 @@
-refresh flood when size changes ? (find out if i need to) 	
+Flooding is clipping corners for size 2 and 3 units
+
+Implement < and == operator for node class
+
+use std::map for bst
