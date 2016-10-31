@@ -74,7 +74,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	Node * n2 = new Node(10,10);
 
 	std::cout << "n1: " << n1->x << ", " << n1->y << std::endl;
-	std::cout << "n1 > that n2? : " << n1 > n2 << std::endl;
+	std::cout << "n1 > that n2? : " << (n1 > n2) << std::endl;
 	// std::cout << boost::format("node n1: %d, %d") % n1->x % %n2->y;
 	// ** Testing 
 
