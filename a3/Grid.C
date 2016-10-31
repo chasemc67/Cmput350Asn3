@@ -206,13 +206,14 @@ void Grid::flood(int size, int x, int y) const {
 };
 
 
+/*
 bool Grid::Node::operator>(const Node &rhs) {
 	std::cout << std::endl;
 	std::cout << "testing > operator for " << std::endl;
 	std::cout << (this->x) << " > " << (rhs.x) << std::endl;
 	std::cout << std::endl;
 
-	return ((this->x > 0));
+	return ((this->x > rhs.x));
 }
 
 bool Grid::Node::operator<(const Node &rhs) {
@@ -221,4 +222,4 @@ bool Grid::Node::operator<(const Node &rhs) {
 	std::cout << (this->x) << " < " << (rhs.x) << std::endl;
 	std::cout << std::endl;
 	return ((this->x < rhs.x));
-}
+}*/
