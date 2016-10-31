@@ -123,6 +123,8 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	}
 
 	std::cout<< "Testing itor" << std::endl;
+	std::cout << boost::format("min is: %d, %d") % openSet.begin()->second->x % openSet.begin()->second->y;
+	it = openSet.begin();
 	openSet[(t5->y * t5->x + t5->x)] = t5;
 	while (it != openSet.end()) {
 		std::cout << boost::format("%d, %d\n") % it->second->x % it->second->y;
