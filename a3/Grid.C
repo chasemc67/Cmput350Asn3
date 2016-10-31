@@ -139,6 +139,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	openSet[(startNode->y * startNode->x + startNode->x)] = startNode;
 	std::shared_ptr<Node> current;
 	while(!openSet.empty()) { 
+		std::cout << "enter while" << std::endl;
 
 		current = openSet.begin()->second;
 		
@@ -182,9 +183,10 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 		}
 
 		*/
+		std::cout << "leave while" << std::endl;
 
 	}
-	return 0;
+	return 1;
 }
 
 void Grid::setTile(int x, int y, Tile tile) {
