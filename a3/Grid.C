@@ -7,6 +7,8 @@
 #include "boost/format.hpp"
 // infinity for a* alg
 #include <limits>
+// square numbers
+#include <cmath>
 	
 Grid::Grid(int width, int height) {
 	// Create width/height grid in memory
@@ -206,7 +208,8 @@ void Grid::flood(int size, int x, int y) const {
 
 int Grid::Node::getHeuristicDistance(const Node & to) {
 	std::cout << boost::format("heuristic x diff:%d y diff:%d \n") % (this->x - to.x) % (this->y - to.y);
-	return (sqrt(((this->x - to.x)^2) + ((this->y - to.y)^2)));
+	std::cout << boost::format("%d %d \n") % pow((this->x - to.x), 2) % pow((this->y - to.y),2);
+	return (sqrt((pow((this->x - to.x), 2) + pow((this->y - to.y),2))));
 }
 
 // Node implementation
