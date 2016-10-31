@@ -212,7 +212,7 @@ bool Grid::Node::operator>(const Node &rhs) {
 	std::cout << (this->x) << " > " << (rhs.x) << std::endl;
 	std::cout << std::endl;
 
-	return ((this->x > rhs.x));
+	return ((this->x > 9));
 }
 
 bool Grid::Node::operator<(const Node &rhs) {
