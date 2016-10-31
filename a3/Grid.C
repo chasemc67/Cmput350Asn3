@@ -103,15 +103,15 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 	//typedef std::map<int, Node> M;
 
-	std::shared_ptr<Node> t1(new Node(10, 10));
+	std::shared_ptr<Node> t1(new Node(5, 5));
 	t1->fScore = 100;
-	std::shared_ptr<Node> t2(new Node(12, 12));
+	std::shared_ptr<Node> t2(new Node(10, 10));
 	t2->fScore = 120;
-	std::shared_ptr<Node> t3(new Node(8, 8));
+	std::shared_ptr<Node> t3(new Node(12, 12));
 	t3->fScore = 80;
 	std::shared_ptr<Node> t4(new Node(11, 11));
 	t4->fScore = 110;
-	std::shared_ptr<Node> t5(new Node(5, 5));
+	std::shared_ptr<Node> t5(new Node(8, 8));
 	t5->fScore = 50;
 	openSet[(t1->y * t1->x + t1->x)] = t1;
 	openSet[(t2->y * t2->x + t1->x)] = t2;
