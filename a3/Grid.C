@@ -67,7 +67,8 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2, 
                        std::vector<Direction> &path) const {
 
-	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % n1->x % n1->y % n2->x % n2->y;
+	std::cout << std::endl;
+	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % x1 % y1 % x2 % y2;
 
 
 	// ** Testing 
@@ -75,15 +76,13 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	std::shared_ptr<Node> n2(new Node(10, 10));
 	// Node * n1 = new Node(12, 12);
 	// Node * n2 = new Node(10, 10);
-
-	std::cout << std::endl;
 	std::cout << "n1: " << n1->x << ", " << n1->y << std::endl;
 	std::cout << "n2: " << n2->x << ", " << n2->y << std::endl;
 	std::cout << "n1.x > n2.x checked with operator overlading : " << (*n1 > *n2) << std::endl;
 	std::cout << "n1.x > n2.x checked with element compare : " << (n1->x > n2->x) << std::endl;
-	std::cout << std::endl;
 
 	std::cout << boost::format("node n1: %d, %d\n") % n1->x % n2->y;
+	std::cout << std::endl;
 	// ** Testing 
 
 	// std::vector<Node> closedSet;
