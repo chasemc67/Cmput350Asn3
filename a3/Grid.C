@@ -1,5 +1,7 @@
 #include "Grid.H"
 #include <iostream>
+
+#include <boost>
 	
 Grid::Grid(int width, int height) {
 	// Create width/height grid in memory
