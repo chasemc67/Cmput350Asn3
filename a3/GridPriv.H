@@ -1,5 +1,3 @@
-// #include <memory>
-
 int width;
 int height;
 int * map;
@@ -16,7 +14,8 @@ public:
 	bool operator>(const Node &rhs);
 	bool operator<(const Node &rhs);
 	bool operator==(const Node &rhs);
-	// Get the euclidian distance from one node to another
+
+	// Get the euclidian distance from this node to another
 	int getHeuristicDistance(const Node & to);
 
 	int x;
@@ -50,7 +49,11 @@ void setReachable(int x, int y) const;
 // To stop infinite flooding
 void flood(int size, int x, int y) const;
 
+// Get the offset in X for moving in Direction dir
 int getXinDir(Direction dir) const;
+// get the offset in y for moving in Direction dir
 int getYinDir(Direction dir) const;
+// get the distance (cardinal or diag) for moving in Direction dir
 int moveDistance(Direction dir) const;
+// Reconstruct path, and store in path vector
 void reconstruct_path(const Node & cameFrom, std::vector<Direction> &path) const;

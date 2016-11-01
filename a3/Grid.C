@@ -38,9 +38,7 @@ Grid::Tile Grid::getTile(int x, int y) const {
 
 bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 	// check if object with size can reside on x1, y1
-	// std::cout << "Checking for connection" << std::endl;
 	if (!canFit(size, x1, y1)) {
-		// std::cout << "Cant fit at current spot" << std::endl;
 		return false;
 	}
 
@@ -76,6 +74,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 	// Set of nodes already evaluated
 	std::map<std::pair<int, int>, std::shared_ptr<Node>> closedSet;
+
 	// Set of discovered nodes to be evaluated
 	// initially contains only the start node
 	// Open set must be sorted, with lowest fScore at the top.
@@ -85,31 +84,36 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 	/* std::cout << std::endl;
 	 std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
-	*/ std::cout << std::endl;
+	 std::cout << std::endl;
+	*/
 
 
-	// openSet.add(startNode)
+	// add start node to open set
 	openSetF.insert(std::pair<int, std::shared_ptr<Node>>(startNode->fScore, startNode));
 	openSetN.insert(std::pair< std::pair<int,int>, std::shared_ptr<Node>>(std::make_pair(startNode->x, startNode->y), startNode));
 
 	while(!openSetF.empty()) { 
-
 		current = openSetF.begin()->second;
+
+		// if we're at the goal, we're done!
 		if (*current == *endNode) {
 			reconstruct_path(*current, path);
 			return current->gScore;
 		}
 
+		// Move current node to closed set, since we're about to eval it
 		openSetF.erase(openSetF.begin());
 		openSetN.erase(std::make_pair(current->x, current->y));
 		closedSet.insert(std::pair< std::pair<int,int>, std::shared_ptr<Node>>(std::make_pair(current->x, current->y), current));
 
+		// Eval all neighbors of current node
 		for (int i = 0; i < 8; i++) {
 			if (canMove(size, current->x, current->y, static_cast<Direction>(i))) {
 				int neighborX = current->x + getXinDir(static_cast<Direction>(i));
 				int neighborY = current->y + getYinDir(static_cast<Direction>(i));
 				neighbor = std::shared_ptr<Node>(new Node(neighborX, neighborY));
 
+				// If we've already evaluated the neighbor, do nothing
 				if (closedSet.find(std::make_pair(neighborX, neighborY)) != closedSet.end())
 					continue;
 
@@ -118,9 +122,11 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 				if (openSetN.find(std::make_pair(neighbor->x, neighbor->y)) == openSetN.end()) {
 					openSetN.insert(std::pair< std::pair<int,int>, std::shared_ptr<Node>>(std::make_pair(neighbor->x, neighbor->y), neighbor));
 				} else if (tentative_gScore >= openSetN[std::make_pair(neighbor->x, neighbor->y)]->gScore) {
+					// If the new path isn't better, do nothing
 					continue;
 				}
 
+				// Put new neighbor into open set
 				neighbor->cameFrom = static_cast<Direction>(i);
 				neighbor->parent = &*current;
 				neighbor->gScore = tentative_gScore;
@@ -129,8 +135,6 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 			}
 		}
 	}
-
-	std::cout << "Returning" << std::endl;
 	return 1;
 }
 
@@ -144,6 +148,7 @@ void Grid::reconstruct_path(const Node & cameFrom, std::vector<Direction> &path)
 }
 
 void Grid::setTile(int x, int y, Tile tile) {
+	// Set tile, used for creating grid in memory
 	map[x + y*width] = tile;
 }
 
@@ -302,12 +307,12 @@ int Grid::moveDistance(Direction dir) const {
 	}
 }
 
-int Grid::Node::getHeuristicDistance(const Node & to) {
-	return (sqrt((pow((this->x - to.x), 2) + pow((this->y - to.y),2))));
-}
 
 // Node implementation
 
+int Grid::Node::getHeuristicDistance(const Node & to) {
+	return (sqrt((pow((this->x - to.x), 2) + pow((this->y - to.y),2))));
+}
 Grid::Node::Node(int x_, int y_) {
 		x = x_;
 		y = y_;
