@@ -1,5 +1,7 @@
 #include "Grid.H"
 #include <iostream>
+// Shared pointers
+#include <memory>
 // Formated strings
 #include "boost/format.hpp"
 // infinity for a* alg
@@ -138,7 +140,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 					continue;
 				}
 
-				neighbor->cameFrom = current;
+				neighbor->cameFrom = static_cast<Direction>(i);
 				neighbor->gScore = tentative_gScore;
 				neighbor->fScore = tentative_gScore + neighbor->getHeuristicDistance(*endNode);
 			}
@@ -336,7 +338,7 @@ Grid::Node::Node(int x_, int y_) {
 		y = y_;
 		gScore = std::numeric_limits<int>::max();
 		fScore = std::numeric_limits<int>::max();
-		cameFrom = nullptr;
+		cameFrom;
 };
 
 bool Grid::Node::operator>(const Node &rhs) {

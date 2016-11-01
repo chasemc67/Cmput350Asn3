@@ -1,6 +1,3 @@
-// Shared pointers
-#include <memory>
-
 
 int width;
 int height;
@@ -23,7 +20,7 @@ public:
 
 	int x;
 	int y;
-	std::shared_ptr<Node> cameFrom;
+	Direction cameFrom;
 	int gScore;
 	int fScore;
 };
