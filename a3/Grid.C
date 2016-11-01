@@ -9,6 +9,7 @@
 // square numbers
 #include <cmath>
 #include <map>
+#include <memory>
 // #include <unordered_map>
 	
 Grid::Grid(int width, int height) {
