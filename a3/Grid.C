@@ -11,6 +11,8 @@
 #include <cmath>
 
 #include <map>
+
+#include <Pair>
 	
 Grid::Grid(int width, int height) {
 	// Create width/height grid in memory
