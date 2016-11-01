@@ -169,7 +169,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	return 1;
 }
 
-int Grid::reconstruct_path(const Node & current) const {
+int Grid::reconstruct_path(const std::shared_ptr<Node> & current) const {
 	std::cout << "Came from: " << current->cameFrom << std::endl;
 }
 

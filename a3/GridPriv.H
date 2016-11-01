@@ -51,4 +51,4 @@ void flood(int size, int x, int y) const;
 int getXinDir(Direction dir) const;
 int getYinDir(Direction dir) const;
 int moveDistance(Direction dir) const;
-int reconstruct_path(const Node & current) const;
+int reconstruct_path(const std::shared_ptr<Node> & current) const;
