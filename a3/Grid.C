@@ -122,7 +122,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	std::map<int, Node>::iterator it = openSet.begin();
 	std::cout << "Testing map" << std::endl; 
 	while (it != openSet.end()) {
-		std::cout << boost::format("%d, %d, f:%d\n") % it->second->x % it->second->y % it->second->fScore;
+		std::cout << boost::format("%d, %d, f:%d\n") % it->second.x % it->second.y % it->second.fScore;
 		it++;
 	}
 	/*
@@ -165,7 +165,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 		openSet.erase((current->y * current->x + current->x));
 		closedSet[(current->y * current->x + current->x)] = current;
-
+		*/
 		/*
 
 		for (neighbor : all 8 reachable neighbors for current) {
