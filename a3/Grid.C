@@ -11,8 +11,6 @@
 #include <cmath>
 
 #include <map>
-
-#include <Pair>
 	
 Grid::Grid(int width, int height) {
 	// Create width/height grid in memory
@@ -93,7 +91,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	startNode->fScore = startNode->getHeuristicDistance(*endNode);
 
 	// Set of nodes already evaluated
-	std::map<std::Pair<int, int>, std::shared_ptr<Node>> closedSet;
+	std::map<std::pair<int, int>, std::shared_ptr<Node>> closedSet;
 	// Set of discovered nodes to be evaluated
 	// initially contains only the start node
 	// Open set must be sorted, with lowest fScore at the top.
