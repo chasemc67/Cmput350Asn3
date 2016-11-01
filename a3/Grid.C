@@ -114,8 +114,8 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 	while(!openSetF.empty()) { 
 
-		auto it_open = openSetF.begin();
-		auto it_closed = closedSet.begin();
+		// auto it_open = openSetF.begin();
+		// auto it_closed = closedSet.begin();
 
 		current = openSetF.begin()->second;
 		if (*current == *endNode) {
@@ -158,8 +158,8 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 }
 
 int Grid::reconstruct_path(const Node & cameFrom) const {
-	std::cout << "Came from: " << cameFrom->cameFrom << std::endl;
-	return cameFrom;
+	std::cout << "Came from: " << cameFrom.cameFrom << std::endl;
+	return cameFrom.cameFrom;
 }
 
 void Grid::setTile(int x, int y, Tile tile) {
