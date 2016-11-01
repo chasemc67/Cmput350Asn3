@@ -134,7 +134,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 				if (closedSet.find(std::make_pair(neighborX, neighborY)) != closedSet.end())
 					continue;
 
-				int tentative_gScore = current->gScore() + moveDistance(static_cast<Direction>(i));
+				int tentative_gScore = current->gScore + moveDistance(static_cast<Direction>(i));
 
 				if (openSetN.find(std::make_pair(neighbor->x, neighbor->y)) == openSetN.end()) {
 					openSetN.insert(std::pair< std::pair<int,int>, std::shared_ptr<Node>>(std::make_pair(neighbor->x, neighbor->y), neighbor));

@@ -19,7 +19,7 @@ public:
 
 	int x;
 	int y;
-	Node *cameFrom;
+	std::shared_ptr<Node> cameFrom;
 	int gScore;
 	int fScore;
 };
