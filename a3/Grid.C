@@ -116,6 +116,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 		auto it_open = openSetF.begin();
 		auto it_closed = closedSet.begin();
 
+		/*
 		std::cout << boost::format("Open set: \n");
 		while(it_open != openSetF.end()) {
 			std::cout << boost::format("%d, %d  F: %d\n") % it_open->second->x %it_open->second->y % it_open->second->fScore;
@@ -126,14 +127,13 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 		while(it_closed != closedSet.end()) {
 			std::cout << boost::format("%d, %d  F: %d\n") % it_closed->second->x %it_closed->second->y % it_closed->second->fScore;
 			it_closed++;
-		}
+		} */
 
 
 		current = openSetF.begin()->second;
 		if (*current == *endNode) {
-			// return reconstruct_path(cameFrom, current);
 			std::cout << "Found path" << std::endl;
-			return 1;
+			return reconstruct_path(current);
 		}
 
 		openSetF.erase(current->fScore);
@@ -163,29 +163,14 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 				openSetF.insert(std::pair<int, std::shared_ptr<Node>>(neighbor->fScore, neighbor));
 			}
 		}
-
-		/*
-		for (neighbor : all 8 reachable neighbors for current) {
-			if (closedSet.contains(neighbor))
-				continue;
-
-			tentative_gScore = current.gScore() + distToNeighbor(neighbor)
-
-			if (!openSet.contains(neighbor))
-				openSet.add(neighbor)
-			else if (tentative_gScore >= neighbor.gScore)
-				continue
-
-			neighbor.cameFrom = current;
-			neighbor.gScore = tentative_gScore;
-			neighbor.fScore = neighbor.gScore + neighbor.getHeuristicDistance(*endNode)
-		}
-		*/
-
 	}
 
 	std::cout << "Returning" << std::endl;
 	return 1;
+}
+
+int Grid::reconstruct_path(const Node & current) {
+	std::cout << "Came from: " << current->cameFrom << std::endl;
 }
 
 void Grid::setTile(int x, int y, Tile tile) {
