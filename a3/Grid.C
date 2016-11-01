@@ -114,10 +114,11 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	t4->fScore = 110;
 	std::shared_ptr<Node> t5(new Node(8, 8));
 	t5->fScore = 50;
-	openSetF[t1->fScore] = t1;
-	openSetF[t2->fScore] = t2;
-	openSetF[t3->fScore] = t3;
-	openSetF[t4->fScore] = t4;
+	openSetF.insert(t1->fScore, t1);
+	openSetF.insert(t2->fScore, t2);
+	openSetF.insert(t3->fScore, t3);
+	openSetF.insert(t4->fScore, t4);
+	openSetF.insert(t5->fScore, t5);
 
 
 	std::multimap<int, std::shared_ptr<Node>>::iterator it = openSetF.begin();
