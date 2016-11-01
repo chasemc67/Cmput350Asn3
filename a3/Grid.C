@@ -91,11 +91,13 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	startNode->fScore = startNode->getHeuristicDistance(*endNode);
 
 	// Set of nodes already evaluated
-	std::map<int, std::shared_ptr<Node>> closedSet;
+	std::map<std::Pair<int, int>, std::shared_ptr<Node>> closedSet;
 	// Set of discovered nodes to be evaluated
 	// initially contains only the start node
 	// Open set must be sorted, with lowest fScore at the top.
-	std::map<int, std::shared_ptr<Node>> openSet;
+	// F is sorted by fScore, n is sorted by node
+	std::multimap<int, std::shared_ptr<Node>> openSetF;
+	std::unordered_map<std::Pair<int, int>, std::shared_ptr<Node>> openSetN;
 
 	std::cout << std::endl;
 	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
@@ -113,37 +115,37 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	t4->fScore = 110;
 	std::shared_ptr<Node> t5(new Node(8, 8));
 	t5->fScore = 50;
-	openSet[t1->fScore] = t1;
-	openSet[t2->fScore] = t2;
-	openSet[t3->fScore] = t3;
-	openSet[t4->fScore] = t4;
+	openSetF[t1->fScore] = t1;
+	openSetF[t2->fScore] = t2;
+	openSetF[t3->fScore] = t3;
+	openSetF[t4->fScore] = t4;
 
 
-	std::map<int, std::shared_ptr<Node>>::iterator it = openSet.begin();
+	std::multimap<int, std::shared_ptr<Node>>::iterator it = openSetF.begin();
 	std::cout << "Testing map" << std::endl; 
-	while (it != openSet.end()) {
+	while (it != openSetF.end()) {
 		std::cout << boost::format("%d, %d, f:%d\n") % it->second->x % it->second->y % it->second->fScore;
 		it++;
 	}
 
 	std::cout<< "Testing itor" << std::endl;
-	openSet[t5->fScore] = t5;
-	std::cout << boost::format("min is: %d, %d, f:%d\n") % openSet.begin()->second->x % openSet.begin()->second->y % openSet.begin()->second->fScore;
-	it = openSet.begin();
-	while (it != openSet.end()) {
+	openSetF[t5->fScore] = t5;
+	std::cout << boost::format("min is: %d, %d, f:%d\n") % openSetF.begin()->second->x % openSet.begin()->second->y % openSet.begin()->second->fScore;
+	it = openSetF.begin();
+	while (it != openSetF.end()) {
 		std::cout << boost::format("%d, %d, f:%d\n") % it->second->x % it->second->y % it->second->fScore;
 		it++;
 	}
 
 	// openSet.add(startNode)
-	openSet[startNode->fScore] = startNode;
+	openSetF[startNode->fScore] = startNode;
 	std::shared_ptr<Node> current;
-	while(!openSet.empty()) { 
+	while(!openSetF.empty()) { 
 
 		std::cout << std::endl;
 		std::cout << "open set: " << std::endl;
-		it = openSet.begin();
-		while (it != openSet.end()) {
+		it = openSetF.begin();
+		while (it != openSetF.end()) {
 			std::cout << boost::format("%d, %d, f:%d\n") % it->second->x % it->second->y % it->second->fScore;
 			it++;
 		}
@@ -155,7 +157,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 			it++;
 		}
 
-		current = openSet.begin()->second;
+		current = openSetF.begin()->second;
 		
 		if (*current == *endNode) {
 			// return reconstruct_path(cameFrom, current);
@@ -163,8 +165,8 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 			return 1;
 		}
 
-		openSet.erase((current->y * current->x + current->x));
-		closedSet[(current->y * current->x + current->x)] = current;
+		openSetF.erase(current.fScore);
+		closedSet[std::make_pair(current.x, current.y)] = current;
 
 		/*
 
