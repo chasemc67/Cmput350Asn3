@@ -50,7 +50,7 @@
  
  Submit your solution using astep like so:
   
-   astep -c c350 -p assign3 README GridPriv.H Grid.C
+   astep -c c350 -p assign3 README GridPriv.H GridInclude.H Grid.C
   
  Your submissions will be marked considering their correctness (syntax +
  semantics), documentation, efficiency, and coding style. Add assert
@@ -71,8 +71,9 @@
  
 */
 
-
 #include <vector> // used for storing paths
+
+#include "GridInclude.H" // add needed #include lines to this file
 
 class Grid
 {
