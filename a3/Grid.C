@@ -11,7 +11,7 @@
 #include <cmath>
 
 #include <map>
-#include <unordered_map>
+// #include <unordered_map>
 	
 Grid::Grid(int width, int height) {
 	// Create width/height grid in memory
@@ -98,7 +98,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	// Open set must be sorted, with lowest fScore at the top.
 	// F is sorted by fScore, n is sorted by node
 	std::multimap<int, std::shared_ptr<Node>> openSetF;
-	std::unordered_map<std::pair<int, int>, std::shared_ptr<Node>> openSetN;
+	// std::unordered_map<std::pair<int, int>, std::shared_ptr<Node>> openSetN;
 
 	std::cout << std::endl;
 	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
