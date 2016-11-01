@@ -104,8 +104,6 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
 	std::cout << std::endl;
 
-	//typedef std::map<int, Node> M;
-
 	std::shared_ptr<Node> t1(new Node(5, 5));
 	t1->fScore = 100;
 	std::shared_ptr<Node> t2(new Node(10, 10));
@@ -124,12 +122,14 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 	std::multimap<int, std::shared_ptr<Node>>::iterator it = openSetF.begin();
 	auto it_closed = closedSet.begin();
+
 	std::cout << "Testing map" << std::endl; 
 	while (it != openSetF.end()) {
 		std::cout << boost::format("%d, %d, f:%d\n") % it->second->x % it->second->y % it->second->fScore;
 		it++;
 	}
 
+	/*
 	std::cout<< "Testing itor" << std::endl;
 	openSetF[t5->fScore] = t5;
 	std::cout << boost::format("min is: %d, %d, f:%d\n") % openSetF.begin()->second->x % openSet.begin()->second->y % openSet.begin()->second->fScore;
@@ -190,7 +190,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 		*/
 
-	}
+	// }
 	return 1;
 }
 
