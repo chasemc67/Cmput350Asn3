@@ -322,6 +322,8 @@ int Grid::moveDistance(Direction dir) const {
 			return DIAGONAL_COST;
 		case SE:
 			return DIAGONAL_COST;
+		default:
+			return 0;
 	}
 }
 
