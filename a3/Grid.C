@@ -1,7 +1,7 @@
 #include "Grid.H"
 #include <iostream>
 // Shared pointers
-#include <memory>
+// #include <memory>
 // Formated strings
 #include "boost/format.hpp"
 // infinity for a* alg
