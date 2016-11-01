@@ -120,7 +120,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 		current = openSetF.begin()->second;
 		if (*current == *endNode) {
 			std::cout << "Found path" << std::endl;
-			return reconstruct_path(&*current);
+			return reconstruct_path(*current);
 		}
 
 		openSetF.erase(current->fScore);
