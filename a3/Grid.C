@@ -65,18 +65,10 @@ bool Grid::isConnected(int size, int x1, int y1, int x2, int y2) const {
 	// size are at play. otherwise need different caches
 	// for each different size or something
 	if (getFloodMap(x2, y2)) {
-		// std::cout<< "spot is in cache" << std::endl;
 		return true;
 	}
-	// std::cout << "Spot is not reachable" << std::endl;
 	return false;
 }
-
-/*
-bool value_comparer(M::value_type &i1, M::value_type &i2)
-{
-		return i1.second<i2.second;
-} */
 
 int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2, 
                        std::vector<Direction> &path) const {
@@ -105,8 +97,6 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
 	std::cout << std::endl;
 
-	// auto it_open = openSetF.begin();
-	// auto it_closed = closedSet.begin();
 
 	// openSet.add(startNode)
 	openSetF.insert(std::pair<int, std::shared_ptr<Node>>(startNode->fScore, startNode));
@@ -114,13 +104,10 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 	while(!openSetF.empty()) { 
 
-		// auto it_open = openSetF.begin();
-		// auto it_closed = closedSet.begin();
-
 		current = openSetF.begin()->second;
 		if (*current == *endNode) {
 			std::cout << "Found path" << std::endl;
-			return reconstruct_path(*current);
+			return reconstruct_path(*current, path);
 		}
 
 		openSetF.erase(current->fScore);
@@ -157,12 +144,13 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	return 1;
 }
 
-int Grid::reconstruct_path(const Node & cameFrom) const {
+int Grid::reconstruct_path(const Node & cameFrom, std::vector<Direction> &path) const {
 	if (cameFrom.parent == nullptr)
 		return cameFrom.cameFrom;
 	else {
 		std::cout << "Came from: " << cameFrom.cameFrom << std::endl;
-		return (reconstruct_path(*cameFrom.parent));
+		path.push_back(static_cast<Direction>(cameFrom.cameFrom));
+		return (reconstruct_path(*cameFrom.parent, path));
 	}
 }
 
