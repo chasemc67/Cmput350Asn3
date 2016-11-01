@@ -328,8 +328,8 @@ int Grid::moveDistance(Direction dir) const {
 }
 
 int Grid::Node::getHeuristicDistance(const Node & to) {
-	std::cout << boost::format("heuristic x diff:%d y diff:%d \n") % (this->x - to.x) % (this->y - to.y);
-	std::cout << boost::format("%d %d \n") % pow((this->x - to.x), 2) % pow((this->y - to.y),2);
+	// std::cout << boost::format("heuristic x diff:%d y diff:%d \n") % (this->x - to.x) % (this->y - to.y);
+	// std::cout << boost::format("%d %d \n") % pow((this->x - to.x), 2) % pow((this->y - to.y),2);
 	return (sqrt((pow((this->x - to.x), 2) + pow((this->y - to.y),2))));
 }
 
