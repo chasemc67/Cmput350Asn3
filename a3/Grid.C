@@ -150,6 +150,8 @@ void Grid::reconstruct_path(const Node & cameFrom, std::vector<Direction> &path)
 void Grid::setTile(int x, int y, Tile tile) {
 	// Set tile, used for creating grid in memory
 	map[x + y*width] = tile;
+	// clear the cache since the map is changing
+	std::fill(floodMap, floodMap+(this->width * this->height), false);
 }
 
 // Check if unit can fit at coord
