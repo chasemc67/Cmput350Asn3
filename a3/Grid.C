@@ -11,6 +11,7 @@
 #include <cmath>
 
 #include <map>
+#include <unordered_map>
 	
 Grid::Grid(int width, int height) {
 	// Create width/height grid in memory
@@ -97,7 +98,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	// Open set must be sorted, with lowest fScore at the top.
 	// F is sorted by fScore, n is sorted by node
 	std::multimap<int, std::shared_ptr<Node>> openSetF;
-	std::unordered_map<std::Pair<int, int>, std::shared_ptr<Node>> openSetN;
+	std::unordered_map<std::pair<int, int>, std::shared_ptr<Node>> openSetN;
 
 	std::cout << std::endl;
 	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
@@ -122,6 +123,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 
 	std::multimap<int, std::shared_ptr<Node>>::iterator it = openSetF.begin();
+	auto it_closed = closedSet.begin();
 	std::cout << "Testing map" << std::endl; 
 	while (it != openSetF.end()) {
 		std::cout << boost::format("%d, %d, f:%d\n") % it->second->x % it->second->y % it->second->fScore;
@@ -151,10 +153,10 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 		}
 
 		std::cout << "closed set: " << std::endl;
-		it = closedSet.begin();
-		while (it != closedSet.end()) {
-			std::cout << boost::format("%d, %d, f:%d\n") % it->second->x % it->second->y % it->second->fScore;
-			it++;
+		it_closed = closedSet.begin();
+		while (it_closed != closedSet.end()) {
+			std::cout << boost::format("%d, %d, f:%d\n") % it_closed->second->x % it_closed->second->y % it_closed->second->fScore;
+			it_closed++;
 		}
 
 		current = openSetF.begin()->second;
