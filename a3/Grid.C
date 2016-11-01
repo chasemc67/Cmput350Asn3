@@ -182,6 +182,8 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 		*/
 
 	}
+
+	std::cout << "Returning" << std::endl;
 	return 1;
 }
 
