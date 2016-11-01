@@ -85,6 +85,8 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	
 	std::shared_ptr<Node> startNode(new Node(x1, y1));
 	std::shared_ptr<Node> endNode(new Node(x2, y2));
+	std::shared_ptr<Node> current;
+	std::shared_ptr<Node> neighbor;
 
 	// cost nothing to get from start node to this node
 	startNode->gScore = 0;
@@ -98,54 +100,21 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	// Open set must be sorted, with lowest fScore at the top.
 	// F is sorted by fScore, n is sorted by node
 	std::multimap<int, std::shared_ptr<Node>> openSetF;
-	// std::unordered_map<std::pair<int, int>, std::shared_ptr<Node>> openSetN;
+	std::map<std::pair<int, int>, std::shared_ptr<Node>> openSetN;
 
 	std::cout << std::endl;
 	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
 	std::cout << std::endl;
-
-	std::shared_ptr<Node> t1(new Node(5, 5));
-	t1->fScore = 100;
-	std::shared_ptr<Node> t2(new Node(10, 10));
-	t2->fScore = 120;
-	std::shared_ptr<Node> t3(new Node(12, 12));
-	t3->fScore = 80;
-	std::shared_ptr<Node> t4(new Node(11, 11));
-	t4->fScore = 110;
-	std::shared_ptr<Node> t5(new Node(8, 8));
-	t5->fScore = 50;
-	
-	openSetF.insert(std::pair<int, std::shared_ptr<Node>>(t1->fScore, t1));
-	openSetF.insert(std::pair<int, std::shared_ptr<Node>>(t2->fScore, t2));
-	openSetF.insert(std::pair<int, std::shared_ptr<Node>>(t3->fScore, t3));
-	openSetF.insert(std::pair<int, std::shared_ptr<Node>>(t4->fScore, t4));
-	openSetF.insert(std::pair<int, std::shared_ptr<Node>>(t5->fScore, t5));
-
 
 	auto it_open = openSetF.begin();
 	auto it_closed = closedSet.begin();
 
 	// openSet.add(startNode)
 	openSetF.insert(std::pair<int, std::shared_ptr<Node>>(startNode->fScore, startNode));
-	std::shared_ptr<Node> current;
+	openSetN.insert(std::pair< std::pair<int,int>, std::shared_ptr<Node>>(std::make_pair(startNode->x, startNode->y), startNode));
+
 	while(!openSetF.empty()) { 
-		std::cout << std::endl;
-		std::cout << "open set: " << std::endl;
-		it_open = openSetF.begin();
-		while (it_open != openSetF.end()) {
-			std::cout << boost::format("%d, %d, f:%d\n") % it_open->second->x % it_open->second->y % it_open->second->fScore;
-			it_open++;
-		}
-
-		std::cout << "closed set: " << std::endl;
-		it_closed = closedSet.begin();
-		while (it_closed != closedSet.end()) {
-			std::cout << boost::format("%d, %d, f:%d\n") % it_closed->second->x % it_closed->second->y % it_closed->second->fScore;
-			it_closed++;
-		}
-
 		current = openSetF.begin()->second;
-		
 		if (*current == *endNode) {
 			// return reconstruct_path(cameFrom, current);
 			std::cout << "Found path" << std::endl;
@@ -153,10 +122,33 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 		}
 
 		openSetF.erase(current->fScore);
+		openSetN.erase(std::make_pair(current->x, current->y));
 		closedSet.insert(std::pair< std::pair<int,int>, std::shared_ptr<Node>>(std::make_pair(current->x, current->y), current));
 
-		/*
+		for (int i = 0; i < 8; i++) {
+			if (canMove(size, current->x, current->y, i)) {
+				neighborX = current->x + getXinDir(i);
+				neighborY = current->y + getYinDir(i);
+				neighbor = std::shared_ptr<Node>(new Node(neighborX, neighborY));
 
+				if (closedSet[std::make_pair(neighborX, neighborY)] != closedSet.end())
+					continue;
+
+				int tentative_gScore = current->gScore(); + moveDistance(i);
+
+				if (openSetN[std::make_pair(neighbor->x, neighbor->y)] == openSetN.end()) {
+					openSetN.insert(std::pair< std::pair<int,int>, std::shared_ptr<Node>>(std::make_pair(neighbor->x, neighbor->y), neighbor));
+				} else if (tentative_gScore >= openSetN[std::make_pair(neighbor->x, neighbor->y)]->gScore) {
+					continue;
+				}
+
+				neighbor->cameFrom = current;
+				neighbor->gScore = tentative_gScore;
+				neighbor->fScore = tentative_gScore + neighbor->getHeuristicDistance(*endNode);
+			}
+		}
+
+		/*
 		for (neighbor : all 8 reachable neighbors for current) {
 			if (closedSet.contains(neighbor))
 				continue;
@@ -172,7 +164,6 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 			neighbor.gScore = tentative_gScore;
 			neighbor.fScore = neighbor.gScore + neighbor.getHeuristicDistance(*endNode)
 		}
-
 		*/
 
 	}
@@ -277,6 +268,59 @@ void Grid::flood(int size, int x, int y) const {
 		flood(size, x+1, y+1);
 };
 
+int Grid::getXinDir(Direction dir) {
+	switch (dir) {
+		case E:
+			return 1;
+		case W: 
+			return -1;
+		case NW:
+			return -1;
+		case NE:
+			return 1;
+		case SW:
+			return -1;
+		case SE:
+			return 1;
+		default:
+			return 0;
+	}
+}
+
+int Grid::getYinDir(Direction dir) {
+	switch (dir) {
+		case N:
+			return -1;
+		case S: 
+			return 1;
+		case NW:
+			return -1;
+		case NE:
+			return -1;
+		case SW:
+			return 1;
+		case SE:
+			return 1;
+		default:
+			return 0;
+	}
+}
+
+int Grid::moveDistance(Direction dir) {
+	switch (dir) {
+		case N:
+		case S:
+		case E:
+		case W:
+			return CARDINAL_COST:
+		case NW:
+		case SW:
+		case NE:
+		case SE:
+			return DIAGONAL_COST:
+	}
+}
+
 int Grid::Node::getHeuristicDistance(const Node & to) {
 	std::cout << boost::format("heuristic x diff:%d y diff:%d \n") % (this->x - to.x) % (this->y - to.y);
 	std::cout << boost::format("%d %d \n") % pow((this->x - to.x), 2) % pow((this->y - to.y),2);
@@ -290,6 +334,7 @@ Grid::Node::Node(int x_, int y_) {
 		y = y_;
 		gScore = std::numeric_limits<int>::max();
 		fScore = std::numeric_limits<int>::max();
+		cameFrom = nullptr;
 };
 
 bool Grid::Node::operator>(const Node &rhs) {

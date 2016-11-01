@@ -19,7 +19,7 @@ public:
 
 	int x;
 	int y;
-	//Node &cameFrom;
+	Node *cameFrom;
 	int gScore;
 	int fScore;
 };
@@ -46,3 +46,7 @@ void setReachable(int x, int y) const;
 // Checks if node has already been expanded before expanding
 // To stop infinite flooding
 void flood(int size, int x, int y) const;
+
+int getXinDir(Direction dir);
+int getYinDir(Direction dir);
+int moveDistance(Direction dir);
