@@ -127,8 +127,8 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 		for (int i = 0; i < 8; i++) {
 			if (canMove(size, current->x, current->y, i)) {
-				neighborX = current->x + getXinDir(i);
-				neighborY = current->y + getYinDir(i);
+				neighborX = current->x + getXinDir(static_cast<Direction>(i));
+				neighborY = current->y + getYinDir(static_cast<Direction>(i));
 				neighbor = std::shared_ptr<Node>(new Node(neighborX, neighborY));
 
 				if (closedSet[std::make_pair(neighborX, neighborY)] != closedSet.end())
