@@ -173,6 +173,7 @@ bool Grid::canFit(int size, int x1, int y1) const {
 // If moving diagonally we can recursively check the 2 non-diag dirs
 // When we check non-diag dirs, we also check for tile type
 bool Grid::canMove(int size, int x1, int y1, Direction dir) const {
+	assert(dir >= 0 && dir < 8);
 	switch(dir) {
 		case N:
 			return (canFit(size, x1, y1-1) && tilesAreSame(size, x1, y1, x1, y1-1));
@@ -247,6 +248,7 @@ void Grid::flood(int size, int x, int y) const {
 };
 
 int Grid::getXinDir(Direction dir) const {
+	assert(dir >= 0 && dir < 8);
 	switch (dir) {
 		case E:
 			return 1;
@@ -266,6 +268,7 @@ int Grid::getXinDir(Direction dir) const {
 }
 
 int Grid::getYinDir(Direction dir) const {
+	assert(dir >= 0 && dir < 8);
 	switch (dir) {
 		case N:
 			return -1;
@@ -285,6 +288,7 @@ int Grid::getYinDir(Direction dir) const {
 }
 
 int Grid::moveDistance(Direction dir) const {
+	assert(dir >= 0 && dir < 8);
 	switch (dir) {
 		case N:
 			return CARDINAL_COST;
