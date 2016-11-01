@@ -1,5 +1,13 @@
 #include "Grid.H"
 #include <iostream>
+// Formated strings
+#include "boost/format.hpp"
+// infinity for a* alg
+#include <limits>
+// square numbers
+#include <cmath>
+#include <map>
+// #include <unordered_map>
 	
 Grid::Grid(int width, int height) {
 	// Create width/height grid in memory

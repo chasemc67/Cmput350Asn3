@@ -1,14 +1,6 @@
 // Shared pointers
 #include <memory>
-// Formated strings
-#include "boost/format.hpp"
-// infinity for a* alg
-#include <limits>
-// square numbers
-#include <cmath>
 
-#include <map>
-// #include <unordered_map>
 
 int width;
 int height;
