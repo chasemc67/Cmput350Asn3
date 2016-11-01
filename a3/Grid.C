@@ -171,6 +171,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 int Grid::reconstruct_path(const int cameFrom) const {
 	std::cout << "Came from: " << cameFrom << std::endl;
+	return cameFrom;
 }
 
 void Grid::setTile(int x, int y, Tile tile) {
