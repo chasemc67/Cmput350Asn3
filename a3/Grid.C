@@ -112,6 +112,23 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	openSetN.insert(std::pair< std::pair<int,int>, std::shared_ptr<Node>>(std::make_pair(startNode->x, startNode->y), startNode));
 
 	while(!openSetF.empty()) { 
+
+		auto it_open = openSetF.begin();
+		auto it_closed = closedSet.begin();
+
+		std::cout << boost::format("Open set: \n");
+		while(it_open != openSetF.end()) {
+			std::cout << boost::format("%d, %d  F: %d\n") % it_open->x %it_open->y % it_open->fScore;
+			it_open++;
+		}
+
+		std::cout << boost::format("Closed set: \n");
+		while(it_closed != closed.end()) {
+			std::cout << boost::format("%d, %d  F: %d\n") % it_closed->x %it_closed->y % it_closed->fScore;
+			it_closed++;
+		}
+
+
 		current = openSetF.begin()->second;
 		if (*current == *endNode) {
 			// return reconstruct_path(cameFrom, current);
