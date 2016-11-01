@@ -123,7 +123,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 		}
 
 		std::cout << boost::format("Closed set: \n");
-		while(it_closed != closed.end()) {
+		while(it_closed != closedSet.end()) {
 			std::cout << boost::format("%d, %d  F: %d\n") % it_closed->second->x %it_closed->second->y % it_closed->second->fScore;
 			it_closed++;
 		}
