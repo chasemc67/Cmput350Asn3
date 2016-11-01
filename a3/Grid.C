@@ -144,6 +144,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 				}
 
 				neighbor->cameFrom = static_cast<Direction>(i);
+				neighbor->parent = &*current;
 				neighbor->gScore = tentative_gScore;
 				neighbor->fScore = tentative_gScore + neighbor->getHeuristicDistance(*endNode);
 				openSetF.insert(std::pair<int, std::shared_ptr<Node>>(neighbor->fScore, neighbor));
@@ -332,6 +333,7 @@ Grid::Node::Node(int x_, int y_) {
 		y = y_;
 		gScore = std::numeric_limits<int>::max();
 		fScore = std::numeric_limits<int>::max();
+		parent = nullptr;
 };
 
 bool Grid::Node::operator>(const Node &rhs) {
