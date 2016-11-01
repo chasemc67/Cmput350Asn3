@@ -133,7 +133,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 		current = openSetF.begin()->second;
 		if (*current == *endNode) {
 			std::cout << "Found path" << std::endl;
-			return reconstruct_path(current);
+			return reconstruct_path(current->cameFrom);
 		}
 
 		openSetF.erase(current->fScore);
@@ -169,8 +169,8 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	return 1;
 }
 
-int Grid::reconstruct_path(const std::shared_ptr<Node> & current) const {
-	std::cout << "Came from: " << current->cameFrom << std::endl;
+int Grid::reconstruct_path(const int cameFrom) const {
+	std::cout << "Came from: " << cameFrom << std::endl;
 }
 
 void Grid::setTile(int x, int y, Tile tile) {
