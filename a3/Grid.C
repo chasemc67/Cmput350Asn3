@@ -142,7 +142,6 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 		for (int i = 0; i < 8; i++) {
 			if (canMove(size, current->x, current->y, static_cast<Direction>(i))) {
-				std::cout << "Can Move " << static_cast<Direction>(i) << std::endl;
 				int neighborX = current->x + getXinDir(static_cast<Direction>(i));
 				int neighborY = current->y + getYinDir(static_cast<Direction>(i));
 				neighbor = std::shared_ptr<Node>(new Node(neighborX, neighborY));
@@ -161,6 +160,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 				neighbor->cameFrom = static_cast<Direction>(i);
 				neighbor->gScore = tentative_gScore;
 				neighbor->fScore = tentative_gScore + neighbor->getHeuristicDistance(*endNode);
+				openSetF.insert(std::pair<int, std::shared_ptr<Node>>(neighbor->fScore, neighbor));
 			}
 		}
 
@@ -308,7 +308,6 @@ int Grid::getXinDir(Direction dir) const {
 int Grid::getYinDir(Direction dir) const {
 	switch (dir) {
 		case N:
-			std::cout << "Going north" << std::endl;
 			return -1;
 		case S: 
 			return 1;
