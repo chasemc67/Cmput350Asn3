@@ -104,8 +104,8 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
 	std::cout << std::endl;
 
-	auto it_open = openSetF.begin();
-	auto it_closed = closedSet.begin();
+	// auto it_open = openSetF.begin();
+	// auto it_closed = closedSet.begin();
 
 	// openSet.add(startNode)
 	openSetF.insert(std::pair<int, std::shared_ptr<Node>>(startNode->fScore, startNode));
@@ -338,7 +338,6 @@ Grid::Node::Node(int x_, int y_) {
 		y = y_;
 		gScore = std::numeric_limits<int>::max();
 		fScore = std::numeric_limits<int>::max();
-		cameFrom;
 };
 
 bool Grid::Node::operator>(const Node &rhs) {
