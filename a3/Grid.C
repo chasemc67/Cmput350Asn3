@@ -127,8 +127,8 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 		for (int i = 0; i < 8; i++) {
 			if (canMove(size, current->x, current->y, static_cast<Direction>(i))) {
-				neighborX = current->x + getXinDir(static_cast<Direction>(i));
-				neighborY = current->y + getYinDir(static_cast<Direction>(i));
+				int neighborX = current->x + getXinDir(static_cast<Direction>(i));
+				int neighborY = current->y + getYinDir(static_cast<Direction>(i));
 				neighbor = std::shared_ptr<Node>(new Node(neighborX, neighborY));
 
 				if (closedSet[std::make_pair(neighborX, neighborY)] != closedSet.end())
@@ -268,7 +268,7 @@ void Grid::flood(int size, int x, int y) const {
 		flood(size, x+1, y+1);
 };
 
-int Grid::getXinDir(Direction dir) {
+int Grid::getXinDir(Direction dir) const {
 	switch (dir) {
 		case E:
 			return 1;
@@ -287,7 +287,7 @@ int Grid::getXinDir(Direction dir) {
 	}
 }
 
-int Grid::getYinDir(Direction dir) {
+int Grid::getYinDir(Direction dir) const {
 	switch (dir) {
 		case N:
 			return -1;
@@ -306,7 +306,7 @@ int Grid::getYinDir(Direction dir) {
 	}
 }
 
-int Grid::moveDistance(Direction dir) {
+int Grid::moveDistance(Direction dir) const {
 	switch (dir) {
 		case N:
 		case S:
