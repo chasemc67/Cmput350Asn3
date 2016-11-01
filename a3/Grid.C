@@ -81,10 +81,10 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
                        std::vector<Direction> &path) const {
 
 	
-	std::shared_ptr<Node> startNode(new Node(x1, y1));
-	std::shared_ptr<Node> endNode(new Node(x2, y2));
-	std::shared_ptr<Node> current;
-	std::shared_ptr<Node> neighbor;
+	boost::shared_ptr<Node> startNode(new Node(x1, y1));
+	boost::shared_ptr<Node> endNode(new Node(x2, y2));
+	boost::shared_ptr<Node> current;
+	boost::shared_ptr<Node> neighbor;
 
 	// cost nothing to get from start node to this node
 	startNode->gScore = 0;
@@ -92,13 +92,13 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	startNode->fScore = startNode->getHeuristicDistance(*endNode);
 
 	// Set of nodes already evaluated
-	std::map<std::pair<int, int>, std::shared_ptr<Node>> closedSet;
+	std::map<std::pair<int, int>, boost::shared_ptr<Node>> closedSet;
 	// Set of discovered nodes to be evaluated
 	// initially contains only the start node
 	// Open set must be sorted, with lowest fScore at the top.
 	// F is sorted by fScore, n is sorted by node
-	std::multimap<int, std::shared_ptr<Node>> openSetF;
-	std::map<std::pair<int, int>, std::shared_ptr<Node>> openSetN;
+	std::multimap<int, boost::shared_ptr<Node>> openSetF;
+	std::map<std::pair<int, int>, boost::shared_ptr<Node>> openSetN;
 
 	std::cout << std::endl;
 	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
@@ -108,8 +108,8 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	// auto it_closed = closedSet.begin();
 
 	// openSet.add(startNode)
-	openSetF.insert(std::pair<int, std::shared_ptr<Node>>(startNode->fScore, startNode));
-	openSetN.insert(std::pair< std::pair<int,int>, std::shared_ptr<Node>>(std::make_pair(startNode->x, startNode->y), startNode));
+	openSetF.insert(std::pair<int, boost::shared_ptr<Node>>(startNode->fScore, startNode));
+	openSetN.insert(std::pair< std::pair<int,int>, boost::shared_ptr<Node>>(std::make_pair(startNode->x, startNode->y), startNode));
 
 	while(!openSetF.empty()) { 
 
@@ -138,13 +138,13 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 		openSetF.erase(current->fScore);
 		openSetN.erase(std::make_pair(current->x, current->y));
-		closedSet.insert(std::pair< std::pair<int,int>, std::shared_ptr<Node>>(std::make_pair(current->x, current->y), current));
+		closedSet.insert(std::pair< std::pair<int,int>, boost::shared_ptr<Node>>(std::make_pair(current->x, current->y), current));
 
 		for (int i = 0; i < 8; i++) {
 			if (canMove(size, current->x, current->y, static_cast<Direction>(i))) {
 				int neighborX = current->x + getXinDir(static_cast<Direction>(i));
 				int neighborY = current->y + getYinDir(static_cast<Direction>(i));
-				neighbor = std::shared_ptr<Node>(new Node(neighborX, neighborY));
+				neighbor = boost::shared_ptr<Node>(new Node(neighborX, neighborY));
 
 				if (closedSet.find(std::make_pair(neighborX, neighborY)) != closedSet.end())
 					continue;
@@ -152,7 +152,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 				int tentative_gScore = current->gScore + moveDistance(static_cast<Direction>(i));
 
 				if (openSetN.find(std::make_pair(neighbor->x, neighbor->y)) == openSetN.end()) {
-					openSetN.insert(std::pair< std::pair<int,int>, std::shared_ptr<Node>>(std::make_pair(neighbor->x, neighbor->y), neighbor));
+					openSetN.insert(std::pair< std::pair<int,int>, boost::shared_ptr<Node>>(std::make_pair(neighbor->x, neighbor->y), neighbor));
 				} else if (tentative_gScore >= openSetN[std::make_pair(neighbor->x, neighbor->y)]->gScore) {
 					continue;
 				}
@@ -160,7 +160,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 				neighbor->cameFrom = static_cast<Direction>(i);
 				neighbor->gScore = tentative_gScore;
 				neighbor->fScore = tentative_gScore + neighbor->getHeuristicDistance(*endNode);
-				openSetF.insert(std::pair<int, std::shared_ptr<Node>>(neighbor->fScore, neighbor));
+				openSetF.insert(std::pair<int, boost::shared_ptr<Node>>(neighbor->fScore, neighbor));
 			}
 		}
 	}
@@ -169,7 +169,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	return 1;
 }
 
-int Grid::reconstruct_path(const std::shared_ptr<Node> cameFrom) const {
+int Grid::reconstruct_path(const boost::shared_ptr<Node> cameFrom) const {
 	std::cout << "Came from: " << cameFrom->cameFrom << std::endl;
 	return cameFrom;
 }
