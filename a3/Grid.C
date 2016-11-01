@@ -152,7 +152,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 			return 1;
 		}
 
-		openSetF.erase(current.fScore);
+		openSetF.erase(current->fScore);
 		closedSet.insert(std::pair< std::pair<int,int>, std::shared_ptr<Node>>(std::make_pair(current->x, current->y), current));
 
 		/*
@@ -175,7 +175,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 		*/
 
-	// }
+	}
 	return 1;
 }
 
