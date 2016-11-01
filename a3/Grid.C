@@ -117,7 +117,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	
 
 	//openSetF.insert(t1->fScore, t1);
-	openSetF.insert(pair<int, std::shared_ptr<Node>>(t1->fScore, t1));
+	openSetF.insert(std::pair<int, std::shared_ptr<Node>>(t1->fScore, t1));
 	// openSetF.insert(t2->fScore, t2);
 	// openSetF.insert(t3->fScore, t3);
 	// openSetF.insert(t4->fScore, t4);
