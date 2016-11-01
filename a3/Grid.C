@@ -126,7 +126,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 		closedSet.insert(std::pair< std::pair<int,int>, std::shared_ptr<Node>>(std::make_pair(current->x, current->y), current));
 
 		for (int i = 0; i < 8; i++) {
-			if (canMove(size, current->x, current->y, i)) {
+			if (canMove(size, current->x, current->y, static_cast<Direction>(i))) {
 				neighborX = current->x + getXinDir(static_cast<Direction>(i));
 				neighborY = current->y + getYinDir(static_cast<Direction>(i));
 				neighbor = std::shared_ptr<Node>(new Node(neighborX, neighborY));
@@ -134,7 +134,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 				if (closedSet[std::make_pair(neighborX, neighborY)] != closedSet.end())
 					continue;
 
-				int tentative_gScore = current->gScore(); + moveDistance(i);
+				int tentative_gScore = current->gScore(); + moveDistance(static_cast<Direction>(i));
 
 				if (openSetN[std::make_pair(neighbor->x, neighbor->y)] == openSetN.end()) {
 					openSetN.insert(std::pair< std::pair<int,int>, std::shared_ptr<Node>>(std::make_pair(neighbor->x, neighbor->y), neighbor));
