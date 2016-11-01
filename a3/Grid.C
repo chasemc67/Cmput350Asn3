@@ -308,7 +308,7 @@ int Grid::getXinDir(Direction dir) const {
 int Grid::getYinDir(Direction dir) const {
 	switch (dir) {
 		case N:
-			std::cout << "Going north" << endl;
+			std::cout << "Going north" << std::endl;
 			return -1;
 		case S: 
 			return 1;
