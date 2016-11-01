@@ -122,36 +122,19 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	openSetF.insert(std::pair<int, std::shared_ptr<Node>>(t5->fScore, t5));
 
 
-	std::multimap<int, std::shared_ptr<Node>>::iterator it = openSetF.begin();
+	auto it_open = openSetF.begin();
 	auto it_closed = closedSet.begin();
 
-	std::cout << "Testing map" << std::endl; 
-	while (it != openSetF.end()) {
-		std::cout << boost::format("%d, %d, f:%d\n") % it->second->x % it->second->y % it->second->fScore;
-		it++;
-	}
-
-	/*
-	std::cout<< "Testing itor" << std::endl;
-	openSetF[t5->fScore] = t5;
-	std::cout << boost::format("min is: %d, %d, f:%d\n") % openSetF.begin()->second->x % openSet.begin()->second->y % openSet.begin()->second->fScore;
-	it = openSetF.begin();
-	while (it != openSetF.end()) {
-		std::cout << boost::format("%d, %d, f:%d\n") % it->second->x % it->second->y % it->second->fScore;
-		it++;
-	}
-
 	// openSet.add(startNode)
-	openSetF[startNode->fScore] = startNode;
+	openSetF.insert(std::pair<int, std::shared_ptr<Node>>(startNode->fScore, startNode));
 	std::shared_ptr<Node> current;
 	while(!openSetF.empty()) { 
-
 		std::cout << std::endl;
 		std::cout << "open set: " << std::endl;
-		it = openSetF.begin();
-		while (it != openSetF.end()) {
-			std::cout << boost::format("%d, %d, f:%d\n") % it->second->x % it->second->y % it->second->fScore;
-			it++;
+		it_open = openSetF.begin();
+		while (it_open != openSetF.end()) {
+			std::cout << boost::format("%d, %d, f:%d\n") % it_open->second->x % it_open->second->y % it_open->second->fScore;
+			it_open++;
 		}
 
 		std::cout << "closed set: " << std::endl;
@@ -170,7 +153,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 		}
 
 		openSetF.erase(current.fScore);
-		closedSet[std::make_pair(current.x, current.y)] = current;
+		closedSet.insert(std::pair< std::pair<int,int>, std::shared_ptr<Node>>(std::make_pair(current->x, current->y), current));
 
 		/*
 
