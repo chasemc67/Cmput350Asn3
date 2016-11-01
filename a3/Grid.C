@@ -83,9 +83,9 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	std::multimap<int, std::shared_ptr<Node>> openSetF;
 	std::map<std::pair<int, int>, std::shared_ptr<Node>> openSetN;
 
-	std::cout << std::endl;
-	std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
-	std::cout << std::endl;
+	/* std::cout << std::endl;
+	 std::cout << boost::format("Finding shortest path from (%d, %d) to (%d, %d)\n") % startNode->x % startNode->y % endNode->x % endNode->y;
+	*/ std::cout << std::endl;
 
 
 	// openSet.add(startNode)
@@ -96,12 +96,11 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 
 		current = openSetF.begin()->second;
 		if (*current == *endNode) {
-			std::cout << "Found path" << std::endl;
 			reconstruct_path(*current, path);
-			return 1;
+			return current->gScore;
 		}
 
-		openSetF.erase(current->fScore);
+		openSetF.erase(openSetF.begin());
 		openSetN.erase(std::make_pair(current->x, current->y));
 		closedSet.insert(std::pair< std::pair<int,int>, std::shared_ptr<Node>>(std::make_pair(current->x, current->y), current));
 
@@ -139,7 +138,6 @@ void Grid::reconstruct_path(const Node & cameFrom, std::vector<Direction> &path)
 	if (cameFrom.parent == nullptr)
 		return;
 	else {
-		std::cout << boost::format("Node in path: %d, %d\n") % cameFrom.x % cameFrom.y;
 		reconstruct_path(*cameFrom.parent, path);
 		path.push_back(static_cast<Direction>(cameFrom.cameFrom));
 	}
@@ -305,8 +303,6 @@ int Grid::moveDistance(Direction dir) const {
 }
 
 int Grid::Node::getHeuristicDistance(const Node & to) {
-	// std::cout << boost::format("heuristic x diff:%d y diff:%d \n") % (this->x - to.x) % (this->y - to.y);
-	// std::cout << boost::format("%d %d \n") % pow((this->x - to.x), 2) % pow((this->y - to.y),2);
 	return (sqrt((pow((this->x - to.x), 2) + pow((this->y - to.y),2))));
 }
 
