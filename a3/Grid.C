@@ -120,7 +120,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 		current = openSetF.begin()->second;
 		if (*current == *endNode) {
 			std::cout << "Found path" << std::endl;
-			return reconstruct_path(cameFrom);
+			return reconstruct_path(&*current);
 		}
 
 		openSetF.erase(current->fScore);
@@ -157,7 +157,7 @@ int Grid::findShortestPath(int size, int x1, int y1, int x2, int y2,
 	return 1;
 }
 
-int Grid::reconstruct_path(const std::shared_ptr<Node> cameFrom) const {
+int Grid::reconstruct_path(const Node & cameFrom) const {
 	std::cout << "Came from: " << cameFrom->cameFrom << std::endl;
 	return cameFrom;
 }
